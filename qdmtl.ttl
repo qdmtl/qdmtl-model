@@ -1,0 +1,627 @@
+@prefix : <http://ontology.qdmtl.ca/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wdt: <http://www.wikidata.org/entity/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix data: <http://data.qdmtl.ca/> .
+@prefix ecrm: <http://erlangen-crm.org/211015/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vocab: <http://vocab.qdmtl.ca/> .
+@prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@base <http://ontology.qdmtl.ca/> .
+
+<http://ontology.qdmtl.ca/> rdf:type owl:Ontology ;
+                             dc:contributor "Dominic Forest" ,
+                                            "Yannic Rozon" ;
+                             dc:creator "David Valentine" ;
+                             dc:title "Les quartiers disparus de Montréal - Ontologie"@fr ,
+                                      "The former neighborhoods of Montreal ontology"@en ;
+                             rdfs:comment """An ontology for former neighborhoods of Montreal.
+`qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."""@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#sameAs
+owl:sameAs rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty ;
+              rdfs:subPropertyOf rdfs:label ;
+              rdfs:range rdf:PlainLiteral .
+
+
+###  http://www.w3.org/2004/02/skos/core#changeNote
+skos:changeNote rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+skos:example rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#hiddenLabel
+skos:hiddenLabel rdf:type owl:AnnotationProperty ;
+                 rdfs:subPropertyOf rdfs:label ;
+                 rdfs:range rdf:PlainLiteral .
+
+
+###  http://www.w3.org/2004/02/skos/core#notation
+skos:notation rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty ;
+               rdfs:subPropertyOf rdfs:label ;
+               rdfs:range rdf:PlainLiteral .
+
+
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
+###  https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent
+rico:RiCCMCorrespondingComponent rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/format
+<http://purl.org/dc/terms/format> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf owl:topObjectProperty ;
+                                  rdfs:domain rico:CarrierType ;
+                                  rdfs:range <http://purl.org/dc/terms/FileFormat> .
+
+
+###  http://purl.org/vocommons/voaf#reliesOn
+voaf:reliesOn rdf:type owl:ObjectProperty ;
+              owl:inverseOf voaf:usedBy .
+
+
+###  http://purl.org/vocommons/voaf#usedBy
+voaf:usedBy rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain voaf:Vocabulary ;
+            rdfs:range voaf:Vocabulary .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+skos:inScheme rdf:type owl:ObjectProperty .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasCarrierType
+rico:hasCarrierType rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf rico:hasOrHadCategory .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasContentOfType
+rico:hasContentOfType rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf rico:hasOrHadCategory ;
+                      owl:inverseOf rico:isContentTypeOf ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( rico:Record
+                                                  rico:RecordPart
+                                                )
+                                  ] ;
+                      rdfs:range rico:ContentType ;
+                      rdfs:comment """Connects a Record or a Record Part to a Content Type which
+            categorizes its content."""@en ;
+                      rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                      rdfs:label "has content of type"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasIdentifierType
+rico:hasIdentifierType rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf rico:hasOrHadCategory ;
+                       owl:inverseOf rico:isIdentifierTypeOf ;
+                       rdfs:domain rico:Identifier ;
+                       rdfs:range rico:IdentifierType ;
+                       rdfs:comment """Connects an Identifier and an Identifier Type that categorizes
+            it."""@en ;
+                       rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                       rdfs:label "has identifier type"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasInstantiation
+rico:hasInstantiation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf rico:isRelatedTo ;
+                      owl:inverseOf rico:isInstantiationOf ;
+                      rdfs:domain rico:RecordResource ;
+                      rdfs:range rico:Instantiation ;
+                      rdfs:comment """Connects a Record Resource to one of its
+            Instantiations."""@en ;
+                      rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                      rdfs:label "has instantiation"@en ;
+                      skos:changeNote [ ] ;
+rico:RiCCMCorrespondingComponent """RiC-R025 ('has instantiation'
+            relation)"""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasOrHadAppellation
+rico:hasOrHadAppellation rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf rico:isRelatedTo ;
+                         owl:inverseOf rico:isOrWasAppellationOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasOrHadCategory
+rico:hasOrHadCategory rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf rico:isRelatedTo ;
+                      owl:inverseOf rico:isOrWasCategoryOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasOrHadIdentifier
+rico:hasOrHadIdentifier rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf rico:hasOrHadAppellation ;
+                        owl:inverseOf rico:isOrWasIdentifierOf ;
+                        rdfs:domain rico:Thing ;
+                        rdfs:range rico:Identifier .
+
+
+###  https://www.ica.org/standards/RiC/ontology#hasRecordSetType
+rico:hasRecordSetType rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf rico:hasOrHadCategory .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isCarrierTypeOf
+rico:isCarrierTypeOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf rico:isOrWasCategoryOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isContentTypeOf
+rico:isContentTypeOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf rico:isOrWasCategoryOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isIdentifierTypeOf
+rico:isIdentifierTypeOf rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf rico:isOrWasCategoryOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isInstantiationOf
+rico:isInstantiationOf rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf rico:isRelatedTo ;
+                       rdfs:domain rico:Instantiation ;
+                       rdfs:range rico:RecordResource ;
+                       rdfs:comment "Inverse of 'has instantiation' object property."@en ;
+                       rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                       rdfs:label "is instantiation of"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isOrWasAppellationOf
+rico:isOrWasAppellationOf rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf rico:isRelatedTo ;
+                          rdfs:domain rico:Appellation ;
+                          rdfs:comment """Connects an Appellation to a Thing that it designates or
+            designated."""@en ;
+                          rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                          rdfs:label "is or was appellation of"@en ;
+                          skos:changeNote [ ] .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf
+rico:isOrWasCategoryOf rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf rico:isRelatedTo ;
+                       rdfs:domain rico:Type ;
+                       rdfs:comment """Connects a Type (a category) to a Thing that it categorizes or
+            categorized."""@en ;
+                       rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                       rdfs:label "is or was category of"@en ;
+                       skos:changeNote [ ] .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isOrWasIdentifierOf
+rico:isOrWasIdentifierOf rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf rico:isOrWasAppellationOf .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isRecordResourceAssociatedWithRecordResource
+rico:isRecordResourceAssociatedWithRecordResource rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf rico:isRelatedTo ;
+                                                  rdf:type owl:SymmetricProperty ;
+                                                  rdfs:domain rico:RecordResource ;
+                                                  rdfs:range rico:RecordResource ;
+                                                  rdfs:comment """Connects two Record Resources. This object property is
+            symmetric."""@en ;
+                                                  rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                                                  rdfs:label "is record resource associated with record resource "@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#isRelatedTo
+rico:isRelatedTo rdf:type owl:ObjectProperty ,
+                          owl:SymmetricProperty ;
+                 rdfs:comment """The most generic object property. Connects an Thing to any other
+            Thing This is a symmetric object property."""@en ;
+                 rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                 rdfs:label "is related to "@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://www.ica.org/standards/RiC/ontology#name
+rico:name rdf:type owl:DatatypeProperty ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment """A label, title or term designating the entity in order to make
+            it distinguishable from other similar entities. For Record Resource or Instantiation,
+            the Name is generally assigned by an Agent as most do not have a Name given when
+            created."""@en ;
+          rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+          rdfs:label "name"@en ;
+          skos:example "4 March 1842"@en ,
+                       """Digital copy of the Pomarius archival inventory from
+            1575"""@en ,
+                       "Nelson Mandela"@en ,
+                       "Papers of the Earls of Liverpool"@en ,
+                       "Sketch Map of the Qatar Peninsula"@en ,
+                       """The Letter of Neacsu from Campulung to the Mayor of
+            Brasov"""@en ;
+          skos:scopeNote """Use only if you don't use Name class for handling
+            names."""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#textualValue
+rico:textualValue rdf:type owl:DatatypeProperty ;
+                  rdfs:domain rico:Appellation ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "A textual expression of an Appellation or Date."@en ;
+                  rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                  rdfs:label "textual value"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#title
+rico:title rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf rico:name ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( rico:Instantiation
+                                       rico:RecordResource
+                                     )
+                       ] ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment """An identifying name of a Record Resource, Instantiation or
+            Rule."""@en ;
+           rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+           rdfs:label "title"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/dc/dcmitype/Image
+dcmitype:Image rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Class ;
+                                     owl:oneOf ( vocab:CartographicImage
+                                                 vocab:PhotographicImage
+                                               )
+                                   ] ;
+               rdfs:subClassOf rico:ContentType .
+
+
+###  http://purl.org/dc/dcmitype/Text
+dcmitype:Text rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:oneOf ( vocab:PrintedText
+                                              )
+                                  ] ;
+              rdfs:subClassOf rico:ContentType .
+
+
+###  http://purl.org/dc/terms/FileFormat
+<http://purl.org/dc/terms/FileFormat> rdf:type owl:Class .
+
+
+###  http://purl.org/vocommons/voaf#Vocabulary
+voaf:Vocabulary rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+skos:ConceptScheme rdf:type owl:Class .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Appellation
+rico:Appellation rdf:type owl:Class ;
+                 rdfs:subClassOf rico:Concept .
+
+
+###  https://www.ica.org/standards/RiC/ontology#CarrierType
+rico:CarrierType rdf:type owl:Class ;
+                 rdfs:subClassOf rico:Type ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty rico:isCarrierTypeOf ;
+                                   owl:allValuesFrom rico:Instantiation
+                                 ] ;
+                 rdfs:comment """Categorization of physical material in or on which information
+            is represented."""@en ;
+                 rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                 rdfs:label "Carrier Type"@en ;
+                 skos:scopeNote """Carrier Type information is essential for assessing
+            authenticity, conservation needs and the availability, access and use of Record
+            Resources. Carrier Type determines the environmental conditions of storage and the
+            prerequisites and possible ways to access and use of the records. Should not be confused
+            with Content Type, that categorizes a Record Resource, nor with Representation Type that
+            categorizes an Instantiation. The Carrier Type depends on the media type that is
+            required to access the records and is independent of its content"""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Concept
+rico:Concept rdf:type owl:Class ;
+             rdfs:subClassOf rico:Thing ;
+             rdfs:comment """An idea, unit of thought, abstract cultural object or
+            category"""@en ;
+             rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+             rdfs:label "Concept"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#ContentType
+rico:ContentType rdf:type owl:Class ;
+                 rdfs:subClassOf rico:Type ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty rico:isContentTypeOf ;
+                                   owl:allValuesFrom rico:RecordResource
+                                 ] ;
+                 rdfs:comment """The fundamental form of communication in which a Record is
+            expressed and the human sense through which it is intended to be
+            perceived."""@en ;
+                 rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                 rdfs:label "Content Type"@en ;
+                 skos:changeNote [ ] ;
+skos:scopeNote """Should not be confused with Representation Type or Carrier
+            Type of a related Instantiation since the form of communication can be independent of
+            the representation or carrier, for example, a map (Content Type: cartographic image) can
+            be represented as a sketch (Representation Type: graphic) or as a GIS-coded elements
+            (Representation Type: computer)."""@en ;
+rico:RiCCMCorrespondingComponent """Corresponds to RiC-A10 (Content Type
+            attribute)"""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Identifier
+rico:Identifier rdf:type owl:Class ;
+                rdfs:subClassOf rico:Appellation ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty rico:hasIdentifierType ;
+                                  owl:allValuesFrom rico:IdentifierType
+                                ] ;
+                rdfs:comment """A word, number, letter, symbol, or any combination of these used
+            to uniquely identify or reference an individual instance of an entity within a specific
+            information domain."""@en ;
+                rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                rdfs:label "Identifier"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#IdentifierType
+rico:IdentifierType rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( vocab:ArchivalReferenceCode
+                                                      vocab:InventoryNumber
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf rico:Type ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty rico:isIdentifierTypeOf ;
+                                      owl:allValuesFrom rico:Identifier
+                                    ] ;
+                    rdfs:comment "Categorization of an Identifier."@en ;
+                    rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                    rdfs:label "Identifier Type"@en ;
+                    skos:scopeNote """For example, 'old identifier' ; 'ISNI' (for a person or
+            corporate body), etc."""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Instantiation
+rico:Instantiation rdf:type owl:Class ;
+                   rdfs:subClassOf rico:Thing ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty rico:hasCarrierType ;
+                                     owl:allValuesFrom rico:CarrierType
+                                   ] ;
+                   rdfs:comment """The inscription of information made by an Agent on a physical
+            carrier in any persistent, recoverable form as a means of communicating information
+            through time and space."""@en ;
+                   rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                   rdfs:label "Instantiation"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Record
+rico:Record rdf:type owl:Class ;
+            rdfs:subClassOf rico:RecordResource ;
+            rdfs:comment """Information inscribed at least once by any method on any
+            physical carrier in any persistent, recoverable form by an Agent in the course of life
+            or work Activity."""@en ;
+            rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+            rdfs:label "Record"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#RecordPart
+rico:RecordPart rdf:type owl:Class ;
+                rdfs:subClassOf rico:RecordResource ;
+                rdfs:comment """Part of a Record with discrete information content that
+            contributes to the Record's physical or intellectual completeness."""@en ;
+                rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                rdfs:label "Record Part"@en ;
+                rico:RiCCMCorrespondingComponent """Corresponds to RiC-E05 (Record Part
+            entity)"""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#RecordResource
+rico:RecordResource rdf:type owl:Class ;
+                    rdfs:subClassOf rico:Thing ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty rico:hasInstantiation ;
+                                      owl:allValuesFrom rico:Instantiation
+                                    ] ;
+                    rdfs:comment """A Record, Record Set, or Record Part produced or acquired and
+            retained by an Agent in the course of Activity."""@en ;
+                    rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                    rdfs:label "Record Resource"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#RecordSet
+rico:RecordSet rdf:type owl:Class ;
+               rdfs:subClassOf rico:RecordResource ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty rico:hasRecordSetType ;
+                                 owl:allValuesFrom rico:RecordSetType
+                               ] ;
+               rdfs:comment """One or more records that are associated by categorization and/or
+            physical aggregation by the creator or other Agent."""@en ;
+               rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+               rdfs:label "Record Set"@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#RecordSetType
+rico:RecordSetType rdf:type owl:Class ;
+                   rdfs:subClassOf rico:Type ;
+                   rdfs:comment "A broad categorization of the type of Record Set."@en ;
+                   rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+                   rdfs:label "Record Set Type"@en ;
+                   skos:changeNote [ ] ;
+skos:scopeNote """Four instances of Record Set Type are included for now in
+            RiC-O; they also are instances of skos:Concept and, as such, part of a SKOS vocabulary.
+            Record Set Type may also be used to categorize types of Record Set that have not
+            traditionally been considered archival, e.g. search result list."""@en ;
+rico:RiCCMCorrespondingComponent """Corresponds to RiC-A36 (Record Set Type
+            attribute)"""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Thing
+rico:Thing rdf:type owl:Class ;
+           rdfs:comment """Any idea, material thing, or event within the realm of human
+            experience."""@en ;
+           rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+           rdfs:label "Thing"@en ;
+           skos:scopeNote """Includes all RiC entities as well as any concept, material
+            thing, or event that may be the subject of a Record Resource or associated with an
+            Activity. Examples of entities not explicitly addressed in RiC includes but is not
+            limited to the following: abstract concepts; cultural movements, named periods and
+            events; named things, objects and works; legendary, mythical or fictitious figures,
+            characters or beings."""@en .
+
+
+###  https://www.ica.org/standards/RiC/ontology#Type
+rico:Type rdf:type owl:Class ;
+          rdfs:subClassOf rico:Concept ;
+          rdfs:comment """A superclass for any category of some thing. A type
+            characterizes an entity."""@en ;
+          rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
+          rdfs:label "Type"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://ontology.qdmtl.ca
+<http://ontology.qdmtl.ca> rdf:type owl:NamedIndividual ,
+                                    voaf:Vocabulary ;
+                           voaf:reliesOn <https://www.ica.org/standards/RiC/ontology> .
+
+
+###  http://ontology.qdmtl.ca/DigitalFile
+:DigitalFile rdf:type owl:NamedIndividual ,
+                      rico:CarrierType .
+
+
+###  http://vocab.qdmtl.ca/ArchivalReferenceCode
+vocab:ArchivalReferenceCode rdf:type owl:NamedIndividual ,
+                                     skos:Concept ;
+                            skos:inScheme vocab:IdentifierTypeScheme ;
+                            skos:prefLabel "archival reference code"@en ,
+                                           "cote"@fr .
+
+
+###  http://vocab.qdmtl.ca/CartographicImage
+vocab:CartographicImage rdf:type owl:NamedIndividual ,
+                                 skos:Concept ;
+                        skos:inScheme vocab:ContentTypeScheme .
+
+
+###  http://vocab.qdmtl.ca/ContentTypeScheme
+vocab:ContentTypeScheme rdf:type owl:NamedIndividual ,
+                                 skos:ConceptScheme .
+
+
+###  http://vocab.qdmtl.ca/IdentifierTypeScheme
+vocab:IdentifierTypeScheme rdf:type owl:NamedIndividual ,
+                                    skos:ConceptScheme .
+
+
+###  http://vocab.qdmtl.ca/InventoryNumber
+vocab:InventoryNumber rdf:type owl:NamedIndividual ,
+                               skos:Concept ;
+                      skos:inScheme vocab:IdentifierTypeScheme ;
+                      rdfs:comment """The inventory number is the number that links a photo to a map.
+In the QDMTLO it is an Individual used for categorizing identifier by IdentifierType."""@en ;
+                      skos:prefLabel "inventory number"@en ,
+                                     "numéro d'inventaire"@fr .
+
+
+###  http://vocab.qdmtl.ca/JPEG
+vocab:JPEG rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           rdfs:label "image/jpeg" .
+
+
+###  http://vocab.qdmtl.ca/PhotographicImage
+vocab:PhotographicImage rdf:type owl:NamedIndividual ,
+                                 skos:Concept ;
+                        skos:inScheme vocab:ContentTypeScheme ;
+                        skos:scopeNote """This term is a member of dcmitype:Image which stands for DCMI Type. Used for specifying content type.
+
+Not to be confused with MIME type."""@en .
+
+
+###  http://vocab.qdmtl.ca/PrintedText
+vocab:PrintedText rdf:type owl:NamedIndividual ,
+                           skos:Concept ;
+                  skos:inScheme vocab:ContentTypeScheme .
+
+
+###  https://www.ica.org/standards/RiC/ontology
+<https://www.ica.org/standards/RiC/ontology> rdf:type owl:NamedIndividual ,
+                                                      voaf:Vocabulary .
+
+
+###  https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File
+ric-rst:File rdf:type owl:NamedIndividual ,
+                      skos:Concept ,
+                      rico:RecordSetType ;
+             rdfs:label "file"@en ;
+             skos:definition """An organized unit of documents grouped together either for
+            current use by the creator or in the process of archival arrangement, because they
+            relate to the same subject, activity, or transaction. A file is usually the basic unit
+            within a record series. (From ICA ISAD(G))"""@en ;
+             skos:prefLabel "file"@en .
+
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

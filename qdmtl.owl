@@ -1,0 +1,978 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ontology.qdmtl.ca/"
+     xml:base="http://ontology.qdmtl.ca/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wdt="http://www.wikidata.org/entity/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:data="http://data.qdmtl.ca/"
+     xmlns:ecrm="http://erlangen-crm.org/211015/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rico="https://www.ica.org/standards/RiC/ontology#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:voaf="http://purl.org/vocommons/voaf#"
+     xmlns:vocab="http://vocab.qdmtl.ca/"
+     xmlns:ric-rst="https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#"
+     xmlns:dcmitype="http://purl.org/dc/dcmitype/">
+    <owl:Ontology rdf:about="http://ontology.qdmtl.ca/">
+        <owl:versionIRI rdf:resource="http://ontology.qdmtl.ca/0.0.1"/>
+        <dc:contributor>Dominic Forest</dc:contributor>
+        <dc:contributor>Yannic Rozon</dc:contributor>
+        <dc:creator>David Valentine</dc:creator>
+        <dc:title xml:lang="en">The former neighborhoods of Montreal ontology.</dc:title>
+        <rdfs:comment xml:lang="en">An ontology for former neighborhoods of Montreal.
+`qdmtl` in the URI stands for french &quot;quartiers disparus de Montréal&quot;.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/contributor -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#sameAs -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#sameAs"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#changeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#changeNote"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#example"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#hiddenLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#hiddenLabel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#notation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#notation"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote"/>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent -->
+
+    <owl:AnnotationProperty rdf:about="https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/format -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/format">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#CarrierType"/>
+        <rdfs:range rdf:resource="http://purl.org/dc/terms/FileFormat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/vocommons/voaf#reliesOn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/vocommons/voaf#reliesOn">
+        <owl:inverseOf rdf:resource="http://purl.org/vocommons/voaf#usedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/vocommons/voaf#usedBy -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/vocommons/voaf#usedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+        <rdfs:range rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#inScheme -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2004/02/skos/core#inScheme"/>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasCarrierType -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasCarrierType">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#hasOrHadCategory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasContentOfType -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasContentOfType">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#hasOrHadCategory"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isContentTypeOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.ica.org/standards/RiC/ontology#Record"/>
+                    <rdf:Description rdf:about="https://www.ica.org/standards/RiC/ontology#RecordPart"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#ContentType"/>
+        <rdfs:comment xml:lang="en">Connects a Record or a Record Part to a Content Type which
+            categorizes its content.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">has content of type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasIdentifierType -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasIdentifierType">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#hasOrHadCategory"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isIdentifierTypeOf"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#IdentifierType"/>
+        <rdfs:comment xml:lang="en">Connects an Identifier and an Identifier Type that categorizes
+            it.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">has identifier type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasInstantiation -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasInstantiation">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isInstantiationOf"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+        <rdfs:comment xml:lang="en">Connects a Record Resource to one of its
+            Instantiations.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">has instantiation</rdfs:label>
+        <skos:changeNote>
+            <rdf:Description/>
+        </skos:changeNote>
+        <rico:RiCCMCorrespondingComponent xml:lang="en">RiC-R025 (&apos;has instantiation&apos;
+            relation)</rico:RiCCMCorrespondingComponent>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasOrHadAppellation -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasOrHadAppellation">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasAppellationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasOrHadCategory -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasOrHadCategory">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasOrHadIdentifier -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasOrHadIdentifier">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#hasOrHadAppellation"/>
+        <owl:inverseOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasIdentifierOf"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Thing"/>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#hasRecordSetType -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#hasRecordSetType">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#hasOrHadCategory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isCarrierTypeOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isCarrierTypeOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isContentTypeOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isContentTypeOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isIdentifierTypeOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isIdentifierTypeOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isInstantiationOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isInstantiationOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:comment xml:lang="en">Inverse of &apos;has instantiation&apos; object property.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">is instantiation of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isOrWasAppellationOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isOrWasAppellationOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Appellation"/>
+        <rdfs:comment xml:lang="en">Connects an Appellation to a Thing that it designates or
+            designated.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">is or was appellation of</rdfs:label>
+        <skos:changeNote>
+            <rdf:Description/>
+        </skos:changeNote>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isOrWasCategoryOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Type"/>
+        <rdfs:comment xml:lang="en">Connects a Type (a category) to a Thing that it categorizes or
+            categorized.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">is or was category of</rdfs:label>
+        <skos:changeNote>
+            <rdf:Description/>
+        </skos:changeNote>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isOrWasIdentifierOf -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isOrWasIdentifierOf">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isOrWasAppellationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isRecordResourceAssociatedWithRecordResource -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isRecordResourceAssociatedWithRecordResource">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#isRelatedTo"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:range rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:comment xml:lang="en">Connects two Record Resources. This object property is
+            symmetric.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">is record resource associated with record resource </rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#isRelatedTo -->
+
+    <owl:ObjectProperty rdf:about="https://www.ica.org/standards/RiC/ontology#isRelatedTo">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:comment xml:lang="en">The most generic object property. Connects an Thing to any other
+            Thing This is a symmetric object property.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">is related to </rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#name -->
+
+    <owl:DatatypeProperty rdf:about="https://www.ica.org/standards/RiC/ontology#name">
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">A label, title or term designating the entity in order to make
+            it distinguishable from other similar entities. For Record Resource or Instantiation,
+            the Name is generally assigned by an Agent as most do not have a Name given when
+            created.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">name</rdfs:label>
+        <skos:example xml:lang="en">4 March 1842</skos:example>
+        <skos:example xml:lang="en">Digital copy of the Pomarius archival inventory from
+            1575</skos:example>
+        <skos:example xml:lang="en">Nelson Mandela</skos:example>
+        <skos:example xml:lang="en">Papers of the Earls of Liverpool</skos:example>
+        <skos:example xml:lang="en">Sketch Map of the Qatar Peninsula</skos:example>
+        <skos:example xml:lang="en">The Letter of Neacsu from Campulung to the Mayor of
+            Brasov</skos:example>
+        <skos:scopeNote xml:lang="en">Use only if you don&apos;t use Name class for handling
+            names.</skos:scopeNote>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#textualValue -->
+
+    <owl:DatatypeProperty rdf:about="https://www.ica.org/standards/RiC/ontology#textualValue">
+        <rdfs:domain rdf:resource="https://www.ica.org/standards/RiC/ontology#Appellation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">A textual expression of an Appellation or Date.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">textual value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#title -->
+
+    <owl:DatatypeProperty rdf:about="https://www.ica.org/standards/RiC/ontology#title">
+        <rdfs:subPropertyOf rdf:resource="https://www.ica.org/standards/RiC/ontology#name"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+                    <rdf:Description rdf:about="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment xml:lang="en">An identifying name of a Record Resource, Instantiation or
+            Rule.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">title</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/dcmitype/Image -->
+
+    <owl:Class rdf:about="http://purl.org/dc/dcmitype/Image">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://vocab.qdmtl.ca/CartographicImage"/>
+                    <rdf:Description rdf:about="http://vocab.qdmtl.ca/PhotographicImage"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#ContentType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/dc/dcmitype/Text -->
+
+    <owl:Class rdf:about="http://purl.org/dc/dcmitype/Text">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://vocab.qdmtl.ca/PrintedText"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#ContentType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/dc/terms/FileFormat -->
+
+    <owl:Class rdf:about="http://purl.org/dc/terms/FileFormat"/>
+    
+
+
+    <!-- http://purl.org/vocommons/voaf#Vocabulary -->
+
+    <owl:Class rdf:about="http://purl.org/vocommons/voaf#Vocabulary"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+
+    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#ConceptScheme -->
+
+    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Appellation -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Appellation">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#CarrierType -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#CarrierType">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Type"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#isCarrierTypeOf"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Categorization of physical material in or on which information
+            is represented.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Carrier Type</rdfs:label>
+        <skos:scopeNote xml:lang="en">Carrier Type information is essential for assessing
+            authenticity, conservation needs and the availability, access and use of Record
+            Resources. Carrier Type determines the environmental conditions of storage and the
+            prerequisites and possible ways to access and use of the records. Should not be confused
+            with Content Type, that categorizes a Record Resource, nor with Representation Type that
+            categorizes an Instantiation. The Carrier Type depends on the media type that is
+            required to access the records and is independent of its content</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Concept -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Concept">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Thing"/>
+        <rdfs:comment xml:lang="en">An idea, unit of thought, abstract cultural object or
+            category</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Concept</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#ContentType -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#ContentType">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Type"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#isContentTypeOf"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The fundamental form of communication in which a Record is
+            expressed and the human sense through which it is intended to be
+            perceived.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Content Type</rdfs:label>
+        <skos:changeNote>
+            <rdf:Description/>
+        </skos:changeNote>
+        <skos:scopeNote xml:lang="en">Should not be confused with Representation Type or Carrier
+            Type of a related Instantiation since the form of communication can be independent of
+            the representation or carrier, for example, a map (Content Type: cartographic image) can
+            be represented as a sketch (Representation Type: graphic) or as a GIS-coded elements
+            (Representation Type: computer).</skos:scopeNote>
+        <rico:RiCCMCorrespondingComponent xml:lang="en">Corresponds to RiC-A10 (Content Type
+            attribute)</rico:RiCCMCorrespondingComponent>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Identifier -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Identifier">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Appellation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#hasIdentifierType"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#IdentifierType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A word, number, letter, symbol, or any combination of these used
+            to uniquely identify or reference an individual instance of an entity within a specific
+            information domain.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Identifier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#IdentifierType -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#IdentifierType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+                    <rdf:Description rdf:about="http://vocab.qdmtl.ca/InventoryNumber"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Type"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#isIdentifierTypeOf"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Categorization of an Identifier.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Identifier Type</rdfs:label>
+        <skos:scopeNote xml:lang="en">For example, &apos;old identifier&apos; ; &apos;ISNI&apos; (for a person or
+            corporate body), etc.</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Instantiation -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Instantiation">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#hasCarrierType"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#CarrierType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The inscription of information made by an Agent on a physical
+            carrier in any persistent, recoverable form as a means of communicating information
+            through time and space.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Instantiation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Record -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Record">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:comment xml:lang="en">Information inscribed at least once by any method on any
+            physical carrier in any persistent, recoverable form by an Agent in the course of life
+            or work Activity.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Record</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#RecordPart -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#RecordPart">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:comment xml:lang="en">Part of a Record with discrete information content that
+            contributes to the Record&apos;s physical or intellectual completeness.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Record Part</rdfs:label>
+        <rico:RiCCMCorrespondingComponent xml:lang="en">Corresponds to RiC-E05 (Record Part
+            entity)</rico:RiCCMCorrespondingComponent>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#RecordResource -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#RecordResource">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#hasInstantiation"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A Record, Record Set, or Record Part produced or acquired and
+            retained by an Agent in the course of Activity.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Record Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#RecordSet -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#RecordSet">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#hasRecordSetType"/>
+                <owl:allValuesFrom rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordSetType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">One or more records that are associated by categorization and/or
+            physical aggregation by the creator or other Agent.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Record Set</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#RecordSetType -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#RecordSetType">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Type"/>
+        <rdfs:comment xml:lang="en">A broad categorization of the type of Record Set.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Record Set Type</rdfs:label>
+        <skos:changeNote>
+            <rdf:Description/>
+        </skos:changeNote>
+        <skos:scopeNote xml:lang="en">Four instances of Record Set Type are included for now in
+            RiC-O; they also are instances of skos:Concept and, as such, part of a SKOS vocabulary.
+            Record Set Type may also be used to categorize types of Record Set that have not
+            traditionally been considered archival, e.g. search result list.</skos:scopeNote>
+        <rico:RiCCMCorrespondingComponent xml:lang="en">Corresponds to RiC-A36 (Record Set Type
+            attribute)</rico:RiCCMCorrespondingComponent>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Thing -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Thing">
+        <rdfs:comment xml:lang="en">Any idea, material thing, or event within the realm of human
+            experience.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Thing</rdfs:label>
+        <skos:scopeNote xml:lang="en">Includes all RiC entities as well as any concept, material
+            thing, or event that may be the subject of a Record Resource or associated with an
+            Activity. Examples of entities not explicitly addressed in RiC includes but is not
+            limited to the following: abstract concepts; cultural movements, named periods and
+            events; named things, objects and works; legendary, mythical or fictitious figures,
+            characters or beings.</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#Type -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#Type">
+        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Concept"/>
+        <rdfs:comment xml:lang="en">A superclass for any category of some thing. A type
+            characterizes an entity.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+        <rdfs:label xml:lang="en">Type</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#record -->
+
+    <owl:Class rdf:about="https://www.ica.org/standards/RiC/ontology#record"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.qdmtl.ca -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.qdmtl.ca">
+        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+        <voaf:reliesOn rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.qdmtl.ca/DigitalFile -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.qdmtl.ca/DigitalFile">
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#CarrierType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/ArchivalReferenceCode -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/ArchivalReferenceCode">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/IdentifierTypeScheme"/>
+        <skos:prefLabel xml:lang="en">archival reference code</skos:prefLabel>
+        <skos:prefLabel xml:lang="fr">cote</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/CartographicImage -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/CartographicImage">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/ContentTypeScheme -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/ContentTypeScheme">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/IdentifierTypeScheme -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/IdentifierTypeScheme">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/InventoryNumber -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/InventoryNumber">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/IdentifierTypeScheme"/>
+        <rdfs:comment xml:lang="en">The inventory number is the number that links a photo to a map.
+In the QDMTLO it is an Individual used for categorizing identifier by IdentifierType.</rdfs:comment>
+        <skos:prefLabel xml:lang="en">inventory number</skos:prefLabel>
+        <skos:prefLabel xml:lang="fr">numéro d&apos;inventaire</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/JPEG -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/JPEG">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdfs:label>image/jpeg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/PhotographicImage -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/PhotographicImage">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
+        <skos:scopeNote xml:lang="en">This term is a member of dcmitype:Image which stands for DCMI Type. Used for specifying content type.
+
+Not to be confused with MIME type.</skos:scopeNote>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://vocab.qdmtl.ca/PrintedText -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/PrintedText">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology -->
+
+    <owl:NamedIndividual rdf:about="https://www.ica.org/standards/RiC/ontology">
+        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File -->
+
+    <owl:NamedIndividual rdf:about="https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#RecordSetType"/>
+        <rdfs:label xml:lang="en">file</rdfs:label>
+        <skos:definition xml:lang="en">An organized unit of documents grouped together either for
+            current use by the creator or in the process of archival arrangement, because they
+            relate to the same subject, activity, or transaction. A file is usually the basic unit
+            within a record series. (From ICA ISAD(G))</skos:definition>
+        <skos:prefLabel xml:lang="en">file</skos:prefLabel>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM001-4-2_0806-1-1-P</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0001</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>11</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0002</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>11</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0003</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>11</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0004</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>11</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0005</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>13</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0006</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>13</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/ArchivalReferenceCode"/>
+        <rico:textualValue>VM094-C196-0007</rico:textualValue>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
+        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/InventoryNumber"/>
+        <rico:textualValue>13</rico:textualValue>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
