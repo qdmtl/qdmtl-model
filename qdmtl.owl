@@ -18,6 +18,7 @@
      xmlns:ric-rst="https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#"
      xmlns:dcmitype="http://purl.org/dc/dcmitype/">
     <owl:Ontology rdf:about="http://ontology.qdmtl.ca/">
+        <owl:versionIRI rdf:resource="http://ontology.qdmtl.ca/0.0.1"/>
         <dc:contributor>Dominic Forest</dc:contributor>
         <dc:contributor>Yannic Rozon</dc:contributor>
         <dc:creator>David Valentine</dc:creator>
