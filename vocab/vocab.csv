@@ -1,0 +1,9 @@
+URI,rdf:type,rdfs:label,skos:prefLabel,skos:altLabel,skos:definition,skos:exactMatch,skos:scopeNote,skos:inScheme,rdfs:isDefinedBy
+vocab:JPEG,"skos:Concept ,
+dct:FileFormat","""image/jpeg""",,,,,,vocab:FileFormatScheme,<http://ontology.qdmtl.ca>
+vocab:CartographicImage,skos:Concept,,"""contenu cartographique""@fr, ""cartographic content""@en",,"""contenu de nature cartographique inscrit sur un support documentaire quelconque""@fr, ""cartographic content recorded on any carrier type or medium""@en",,,vocab:ContentTypeScheme,<http://ontology.qdmtl.ca>
+vocab:PhotographicImage,skos:Concept,,"""contenu photographique""@fr, ""photographic content""@en",,"""contenu de nature photographique inscrit sur un support documentaire quelconque""@fr, ""cartographic content recorded on any carrier type or medium""@en",,"""à ne pas confondre avec MIME type""@fr, ""not to be confused with MIME type""@en",vocab:ContentTypeScheme,<http://ontology.qdmtl.ca>
+vocab:ArchivalReferenceCode,skos:Concept,,"""cote""@fr, ""archival reference code""@en","""numéro d’entrée""@fr, ""code d’identification systématique""@fr","""code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal""@fr",,,vocab:IdentifierTypeScheme,<http://ontology.qdmtl.ca>
+vocab:InventoryNumber,skos:Concept,,"""numéro d’inventaire""@fr, ""inventory number""@en",,"""numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan""@fr, ""number that links photographs to a map""@en",,,vocab:IdentifierTypeScheme,<http://ontology.qdmtl.ca>
+vocab:PrintedText,skos:Concept,,,,,,,vocab:ContentTypeScheme,<http://ontology.qdmtl.ca>
+vocab:digitalFile,"skos:Concept , rico:CarrierType",,,,,,,,<http://ontology.qdmtl.ca>

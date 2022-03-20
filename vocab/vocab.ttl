@@ -1,0 +1,46 @@
+vocab:JPEG rdf:type owl:NamedIndividual ,
+		skos:Concept ,
+dct:FileFormat ;
+	rdfs:label "image/jpeg" ;
+	skos:inScheme vocab:FileFormatScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:CartographicImage rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "contenu cartographique"@fr, "cartographic content"@en ;
+	skos:definition "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr, "cartographic content recorded on any carrier type or medium"@en ;
+	skos:inScheme vocab:ContentTypeScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:PhotographicImage rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "contenu photographique"@fr, "photographic content"@en ;
+	skos:definition "contenu de nature photographique inscrit sur un support documentaire quelconque"@fr, "cartographic content recorded on any carrier type or medium"@en ;
+	skos:scopeNote "à ne pas confondre avec MIME type"@fr, "not to be confused with MIME type"@en ;
+	skos:inScheme vocab:ContentTypeScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:ArchivalReferenceCode rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "cote"@fr, "archival reference code"@en ;
+	skos:altLabel "numéro d’entrée"@fr, "code d’identification systématique"@fr ;
+	skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
+	skos:inScheme vocab:IdentifierTypeScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:InventoryNumber rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "numéro d’inventaire"@fr, "inventory number"@en ;
+	skos:definition "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr, "number that links photographs to a map"@en ;
+	skos:inScheme vocab:IdentifierTypeScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:PrintedText rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:inScheme vocab:ContentTypeScheme ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:digitalFile rdf:type owl:NamedIndividual ,
+		skos:Concept , rico:CarrierType ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
