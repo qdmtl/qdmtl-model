@@ -1,46 +1,68 @@
 @prefix : <http://ontology.qdmtl.ca/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix wdt: <http://www.wikidata.org/entity/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix data: <http://data.qdmtl.ca/> .
-@prefix ecrm: <http://erlangen-crm.org/211015/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vocab: <http://vocab.qdmtl.ca/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@base <http://ontology.qdmtl.ca/> .
+@base <http://ontology.qdmtl.ca> .
 
-<http://ontology.qdmtl.ca/> rdf:type owl:Ontology ;
-                             owl:versionIRI <http://ontology.qdmtl.ca/0.0.1> ;
-                             dc:contributor "Dominic Forest" ,
-                                            "Yannic Rozon" ;
-                             dc:creator "David Valentine" ;
-                             dc:title "Les quartiers disparus de Montréal - Ontologie"@fr ,
-                                      "The former neighborhoods of Montreal ontology"@en ;
-                             rdfs:comment """An ontology for former neighborhoods of Montreal.
-`qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."""@en .
+<http://ontology.qdmtl.ca> rdf:type owl:Ontology ;
+                            owl:versionIRI <http://ontology.qdmtl.ca/0.0.0> ;
+                            dcterms:contributor "Dominic Forest" ,
+                                                "Yannic Rozon" ;
+                            dcterms:creator "David Valentine" ;
+                            dcterms:description """An ontology for former neighborhoods of Montreal.
+`qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."""@en ;
+                            dcterms:license <https://creativecommons.org/licenses/by/1.0/> ;
+                            dcterms:modified "2022-03-20T09:00:00-0400"^^xsd:dateTime ;
+                            dcterms:title "Les quartiers disparus de Montréal - Ontologie"@fr ,
+                                          "The former neighborhoods of Montreal Ontology"@en ;
+                            vann:preferredNamespacePrefix "qdmtl" ;
+                            rdfs:seeAlso <https://qdmtl.ca> .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
-###  http://purl.org/dc/elements/1.1/contributor
-dc:contributor rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
 
 
-###  http://purl.org/dc/elements/1.1/creator
-dc:creator rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
 
 
-###  http://purl.org/dc/elements/1.1/title
-dc:title rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2002/07/owl#sameAs
@@ -94,9 +116,7 @@ rico:RiCCMCorrespondingComponent rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/dc/terms/format
-dct:format rdf:type owl:ObjectProperty ;
-           rdfs:domain rico:CarrierType ;
-           rdfs:range dct:FileFormat .
+dcterms:format rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.org/vocommons/voaf#reliesOn
@@ -171,7 +191,11 @@ rico:hasInstantiation rdf:type owl:ObjectProperty ;
 rico:hasOrHadAppellation rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf rico:isRelatedTo ;
                          owl:inverseOf rico:isOrWasAppellationOf ;
-                         rdfs:domain rico:Thing ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( rico:Instantiation
+                                                     rico:RecordResource
+                                                   )
+                                     ] ;
                          rdfs:range rico:Appellation ;
                          rdfs:comment """Connects a Thing to an Appellation that is or was used for
             designating it."""@en ;
@@ -183,7 +207,6 @@ rico:hasOrHadAppellation rdf:type owl:ObjectProperty ;
 rico:hasOrHadCategory rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf rico:isRelatedTo ;
                       owl:inverseOf rico:isOrWasCategoryOf ;
-                      rdfs:domain rico:Thing ;
                       rdfs:range rico:Type ;
                       rdfs:comment """Connects a Thing to a Type that categorizes or categorized
             it."""@en ;
@@ -195,7 +218,6 @@ rico:hasOrHadCategory rdf:type owl:ObjectProperty ;
 rico:hasOrHadIdentifier rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf rico:hasOrHadAppellation ;
                         owl:inverseOf rico:isOrWasIdentifierOf ;
-                        rdfs:domain rico:Thing ;
                         rdfs:range rico:Identifier ;
                         rdfs:comment """Connects a Thing to one of its past or present
             Identifiers."""@en ;
@@ -287,7 +309,6 @@ rico:isOrWasCategoryOf rdf:type owl:ObjectProperty ;
 rico:isOrWasIdentifierOf rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf rico:isOrWasAppellationOf ;
                          rdfs:domain rico:Identifier ;
-                         rdfs:range rico:Thing ;
                          rdfs:comment """Connects an Identifier to a Thing that it identified or
             identifies."""@en ;
                          rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
@@ -381,25 +402,16 @@ rico:title rdf:type owl:DatatypeProperty ;
 
 ###  http://purl.org/dc/dcmitype/Image
 dcmitype:Image rdf:type owl:Class ;
-               owl:equivalentClass [ rdf:type owl:Class ;
-                                     owl:oneOf ( vocab:CartographicImage
-                                                 vocab:PhotographicImage
-                                               )
-                                   ] ;
                rdfs:subClassOf rico:ContentType .
 
 
 ###  http://purl.org/dc/dcmitype/Text
 dcmitype:Text rdf:type owl:Class ;
-              owl:equivalentClass [ rdf:type owl:Class ;
-                                    owl:oneOf ( vocab:PrintedText
-                                              )
-                                  ] ;
               rdfs:subClassOf rico:ContentType .
 
 
 ###  http://purl.org/dc/terms/FileFormat
-dct:FileFormat rdf:type owl:Class .
+dcterms:FileFormat rdf:type owl:Class .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
@@ -445,7 +457,6 @@ rico:CarrierType rdf:type owl:Class ;
 
 ###  https://www.ica.org/standards/RiC/ontology#Concept
 rico:Concept rdf:type owl:Class ;
-             rdfs:subClassOf rico:Thing ;
              rdfs:comment """An idea, unit of thought, abstract cultural object or
             category"""@en ;
              rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
@@ -490,11 +501,6 @@ rico:Identifier rdf:type owl:Class ;
 
 ###  https://www.ica.org/standards/RiC/ontology#IdentifierType
 rico:IdentifierType rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Class ;
-                                          owl:oneOf ( vocab:ArchivalReferenceCode
-                                                      vocab:InventoryNumber
-                                                    )
-                                        ] ;
                     rdfs:subClassOf rico:Type ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty rico:isIdentifierTypeOf ;
@@ -509,8 +515,7 @@ rico:IdentifierType rdf:type owl:Class ;
 
 ###  https://www.ica.org/standards/RiC/ontology#Instantiation
 rico:Instantiation rdf:type owl:Class ;
-                   rdfs:subClassOf rico:Thing ,
-                                   [ rdf:type owl:Restriction ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                      owl:onProperty rico:hasCarrierType ;
                                      owl:allValuesFrom rico:CarrierType
                                    ] ;
@@ -544,8 +549,7 @@ rico:RecordPart rdf:type owl:Class ;
 
 ###  https://www.ica.org/standards/RiC/ontology#RecordResource
 rico:RecordResource rdf:type owl:Class ;
-                    rdfs:subClassOf rico:Thing ,
-                                    [ rdf:type owl:Restriction ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty rico:hasInstantiation ;
                                       owl:allValuesFrom rico:Instantiation
                                     ] ;
@@ -580,20 +584,6 @@ rico:RecordSetType rdf:type owl:Class ;
             traditionally been considered archival, e.g. search result list."""@en .
 
 
-###  https://www.ica.org/standards/RiC/ontology#Thing
-rico:Thing rdf:type owl:Class ;
-           rdfs:comment """Any idea, material thing, or event within the realm of human
-            experience."""@en ;
-           rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
-           rdfs:label "Thing"@en ;
-           skos:scopeNote """Includes all RiC entities as well as any concept, material
-            thing, or event that may be the subject of a Record Resource or associated with an
-            Activity. Examples of entities not explicitly addressed in RiC includes but is not
-            limited to the following: abstract concepts; cultural movements, named periods and
-            events; named things, objects and works; legendary, mythical or fictitious figures,
-            characters or beings."""@en .
-
-
 ###  https://www.ica.org/standards/RiC/ontology#Type
 rico:Type rdf:type owl:Class ;
           rdfs:subClassOf rico:Concept ;
@@ -607,33 +597,228 @@ rico:Type rdf:type owl:Class ;
 #    Individuals
 #################################################################
 
-###  http://ontology.qdmtl.ca
-<http://ontology.qdmtl.ca> rdf:type owl:NamedIndividual ,
-                                    voaf:Vocabulary ;
-                           voaf:reliesOn <https://www.ica.org/standards/RiC/ontology> .
+###  http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P
+<http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> rdf:type owl:NamedIndividual ,
+                                                            rico:Record ;
+                                                   rico:hasContentOfType vocab:cartographicImage ;
+                                                   rico:hasOrHadIdentifier _:genid22 ;
+                                                   rico:title "Plan d’expropriation, secteur de Radio-Canada"@fr ;
+                                                   rdfs:comment "Carte index fournie en pièce jointe du dossier D0196 : les numéros inscrits sur ce plan d’expropriation correspondent aux numéros d’inventaires apparaissant sur les photographies."@fr ;
+                                                   rdfs:label "Plan d’expropriation, secteur de Radio-Canada"@fr ;
+                                                   rdfs:seeAlso <https://archivesdemontreal.com/2013/10/15/les-quartiers-disparus-de-montreal-le-secteur-de-la-societe-radio-canada-faubourg-a-mlasse-9-juillet-1963> .
+
+_:genid22 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM001-4-2_0806-1-1-P" .
 
 
-###  http://vocab.qdmtl.ca/ArchivalReferenceCode
-vocab:ArchivalReferenceCode rdf:type owl:NamedIndividual ,
-                                     skos:Concept ;
-                            skos:inScheme vocab:IdentifierTypeScheme ;
-                            rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
-                            skos:altLabel "code d’identification systématique"@fr ,
-                                          "numéro d’entrée"@fr ;
-                            skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
-                            skos:prefLabel "archival reference code"@en ,
-                                           "cote"@fr .
+###  http://data.qdmtl.ca/record/VM094-C196-0001
+<http://data.qdmtl.ca/record/VM094-C196-0001> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid23 ,
+                                                                      _:genid24 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0001" ;
+                                              rdfs:label "VM094-C196-0001" .
+
+_:genid23 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0001" .
+
+_:genid24 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "11" .
 
 
-###  http://vocab.qdmtl.ca/CartographicImage
-vocab:CartographicImage rdf:type owl:NamedIndividual ,
-                                 skos:Concept ;
-                        skos:inScheme vocab:ContentTypeScheme ;
-                        rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
-                        skos:definition "cartographic content recorded on any carrier type or medium"@en ,
-                                        "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr ;
-                        skos:prefLabel "cartographic content"@en ,
-                                       "contenu cartographique"@fr .
+###  http://data.qdmtl.ca/record/VM094-C196-0002
+<http://data.qdmtl.ca/record/VM094-C196-0002> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid25 ,
+                                                                      _:genid26 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0002" ;
+                                              rdfs:label "VM094-C196-0002" .
+
+_:genid25 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0002" .
+
+_:genid26 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "11" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0003
+<http://data.qdmtl.ca/record/VM094-C196-0003> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid27 ,
+                                                                      _:genid28 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0003" ;
+                                              rdfs:label "VM094-C196-0003" .
+
+_:genid27 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0003" .
+
+_:genid28 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "11" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0004
+<http://data.qdmtl.ca/record/VM094-C196-0004> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid29 ,
+                                                                      _:genid30 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0004" ;
+                                              rdfs:label "VM094-C196-0004" .
+
+_:genid29 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0004" .
+
+_:genid30 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "11" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0005
+<http://data.qdmtl.ca/record/VM094-C196-0005> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid31 ,
+                                                                      _:genid32 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0005" ;
+                                              rdfs:label "VM094-C196-0005" .
+
+_:genid31 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0005" .
+
+_:genid32 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "13" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0006
+<http://data.qdmtl.ca/record/VM094-C196-0006> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid33 ,
+                                                                      _:genid34 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0006" ;
+                                              rdfs:label "VM094-C196-0006" .
+
+_:genid33 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0006" .
+
+_:genid34 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "13" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0007
+<http://data.qdmtl.ca/record/VM094-C196-0007> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:hasOrHadIdentifier _:genid35 ,
+                                                                      _:genid36 ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0007" ;
+                                              rdfs:label "VM094-C196-0007" .
+
+_:genid35 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:archivalReferenceCode ;
+           rico:textualValue "VM094-C196-0007" .
+
+_:genid36 rdf:type rico:Identifier ;
+           rico:hasIdentifierType vocab:inventoryNumber ;
+           rico:textualValue "13" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0900
+<http://data.qdmtl.ca/record/VM094-C196-0900> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0900" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0900" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0901
+<http://data.qdmtl.ca/record/VM094-C196-0901> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0901" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0901" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0902
+<http://data.qdmtl.ca/record/VM094-C196-0902> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0902" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0902" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0903
+<http://data.qdmtl.ca/record/VM094-C196-0903> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0903" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0903" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0928
+<http://data.qdmtl.ca/record/VM094-C196-0928> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0928" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0928" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0929
+<http://data.qdmtl.ca/record/VM094-C196-0929> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0929" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0929" .
+
+
+###  http://data.qdmtl.ca/record/VM094-C196-0930
+<http://data.qdmtl.ca/record/VM094-C196-0930> rdf:type owl:NamedIndividual ,
+                                                       rico:Record ;
+                                              rico:hasContentOfType vocab:photographicImage ;
+                                              rico:isRecordResourceAssociatedWithRecordResource <http://data.qdmtl.ca/record/VM001-4-2_0806-1-1-P> ;
+                                              rico:title "VM094-C196-0930" ;
+                                              rdfs:comment "St-Vincent de Paul Asylum (Asile Saint-Vincent-de-Paul)" ;
+                                              rdfs:label "VM094-C196-0930" .
+
+
+###  http://ontology.qdmtl.ca/
+: rdf:type owl:NamedIndividual ,
+           voaf:Vocabulary ;
+  voaf:reliesOn <https://www.ica.org/standards/RiC/ontology> .
 
 
 ###  http://vocab.qdmtl.ca/ContentTypeScheme
@@ -648,8 +833,39 @@ vocab:FileFormatScheme rdf:type owl:NamedIndividual .
 vocab:IdentifierTypeScheme rdf:type owl:NamedIndividual .
 
 
-###  http://vocab.qdmtl.ca/InventoryNumber
-vocab:InventoryNumber rdf:type owl:NamedIndividual ,
+###  http://vocab.qdmtl.ca/archivalReferenceCode
+vocab:archivalReferenceCode rdf:type owl:NamedIndividual ,
+                                     skos:Concept ;
+                            skos:inScheme vocab:IdentifierTypeScheme ;
+                            rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
+                            skos:altLabel "code d’identification systématique"@fr ,
+                                          "numéro d’entrée"@fr ;
+                            skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
+                            skos:prefLabel "archival reference code"@en ,
+                                           "cote"@fr .
+
+
+###  http://vocab.qdmtl.ca/cartographicImage
+vocab:cartographicImage rdf:type owl:NamedIndividual ,
+                                 dcmitype:Image ,
+                                 skos:Concept ;
+                        skos:inScheme vocab:ContentTypeScheme ;
+                        rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
+                        skos:definition "cartographic content recorded on any carrier type or medium"@en ,
+                                        "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr ;
+                        skos:prefLabel "cartographic content"@en ,
+                                       "contenu cartographique"@fr .
+
+
+###  http://vocab.qdmtl.ca/digitalFile
+vocab:digitalFile rdf:type owl:NamedIndividual ,
+                           skos:Concept ,
+                           rico:CarrierType ;
+                  rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+
+###  http://vocab.qdmtl.ca/inventoryNumber
+vocab:inventoryNumber rdf:type owl:NamedIndividual ,
                                skos:Concept ;
                       skos:inScheme vocab:IdentifierTypeScheme ;
                       rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
@@ -659,17 +875,18 @@ vocab:InventoryNumber rdf:type owl:NamedIndividual ,
                                      "numéro d’inventaire"@fr .
 
 
-###  http://vocab.qdmtl.ca/JPEG
-vocab:JPEG rdf:type owl:NamedIndividual ,
-                    dct:FileFormat ,
+###  http://vocab.qdmtl.ca/jpeg
+vocab:jpeg rdf:type owl:NamedIndividual ,
+                    dcterms:FileFormat ,
                     skos:Concept ;
            skos:inScheme vocab:FileFormatScheme ;
            rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
            rdfs:label "image/jpeg" .
 
 
-###  http://vocab.qdmtl.ca/PhotographicImage
-vocab:PhotographicImage rdf:type owl:NamedIndividual ,
+###  http://vocab.qdmtl.ca/photographicImage
+vocab:photographicImage rdf:type owl:NamedIndividual ,
+                                 dcmitype:Image ,
                                  skos:Concept ;
                         skos:inScheme vocab:ContentTypeScheme ;
                         rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
@@ -681,17 +898,11 @@ vocab:PhotographicImage rdf:type owl:NamedIndividual ,
                                        "à ne pas confondre avec MIME type"@fr .
 
 
-###  http://vocab.qdmtl.ca/PrintedText
-vocab:PrintedText rdf:type owl:NamedIndividual ,
+###  http://vocab.qdmtl.ca/printedText
+vocab:printedText rdf:type owl:NamedIndividual ,
+                           dcmitype:Text ,
                            skos:Concept ;
                   skos:inScheme vocab:ContentTypeScheme ;
-                  rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
-
-
-###  http://vocab.qdmtl.ca/digitalFile
-vocab:digitalFile rdf:type owl:NamedIndividual ,
-                           skos:Concept ,
-                           rico:CarrierType ;
                   rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
 
