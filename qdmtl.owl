@@ -12,18 +12,19 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:voaf="http://purl.org/vocommons/voaf#"
      xmlns:vocab="http://vocab.qdmtl.ca/"
+     xmlns:schema="https://schema.org/"
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:ric-rst="https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#"
+     xmlns:schema1="http://schema.org/"
      xmlns:dcmitype="http://purl.org/dc/dcmitype/">
     <owl:Ontology rdf:about="http://ontology.qdmtl.ca">
         <owl:versionIRI rdf:resource="http://ontology.qdmtl.ca/0.0.0"/>
         <dcterms:contributor>Dominic Forest</dcterms:contributor>
         <dcterms:contributor>Yannic Rozon</dcterms:contributor>
         <dcterms:creator>David Valentine</dcterms:creator>
-        <dcterms:description xml:lang="en">An ontology for former neighborhoods of Montreal.
-`qdmtl` in the URI stands for french &quot;quartiers disparus de Montréal&quot;.</dcterms:description>
+        <dcterms:description xml:lang="en">An ontology for former neighborhoods of Montreal. `qdmtl` in the URI stands for french &quot;quartiers disparus de Montréal&quot;.</dcterms:description>
         <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/1.0/"/>
-        <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-20T09:00:00-0400</dcterms:modified>
+        <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-20T20:00:00-05:00</dcterms:modified>
         <dcterms:title xml:lang="fr">Les quartiers disparus de Montréal - Ontologie</dcterms:title>
         <dcterms:title xml:lang="en">The former neighborhoods of Montreal Ontology</dcterms:title>
         <vann:preferredNamespacePrefix>qdmtl</vann:preferredNamespacePrefix>
@@ -91,6 +92,12 @@
     
 
 
+    <!-- http://schema.org/image -->
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/image"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#sameAs -->
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#sameAs"/>
@@ -112,9 +119,21 @@
     
 
 
+    <!-- http://www.w3.org/2004/02/skos/core#closeMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#closeMatch"/>
+    
+
+
     <!-- http://www.w3.org/2004/02/skos/core#definition -->
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#exactMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#exactMatch"/>
     
 
 
@@ -154,9 +173,15 @@
     
 
 
-    <!-- https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent -->
+    <!-- https://schema.org/url -->
 
-    <owl:AnnotationProperty rdf:about="https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent"/>
+    <owl:AnnotationProperty rdf:about="https://schema.org/url"/>
+    
+
+
+    <!-- https://www.ica.org/standards/RiC/ontology#closeTo -->
+
+    <owl:AnnotationProperty rdf:about="https://www.ica.org/standards/RiC/ontology#closeTo"/>
     
 
 
@@ -173,7 +198,12 @@
 
     <!-- http://purl.org/dc/terms/format -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/format"/>
+    <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/format">
+        <dcterms:description xml:lang="en">Recommended practice is to use a controlled vocabulary where available. For example, for file formats one could use the list of Internet Media Types [[MIME](https://www.iana.org/assignments/media-types/media-types.xhtml)].  Examples of dimensions include size and duration.</dcterms:description>
+        <rdfs:comment xml:lang="en">The file format, physical medium, or dimensions of the resource.</rdfs:comment>
+        <rdfs:label xml:lang="en">format</rdfs:label>
+        <rdfs:label xml:lang="fr">format</rdfs:label>
+    </owl:ObjectProperty>
     
 
 
@@ -560,7 +590,7 @@
     <!-- http://purl.org/dc/dcmitype/Image -->
 
     <owl:Class rdf:about="http://purl.org/dc/dcmitype/Image">
-        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#ContentType"/>
+        <rdfs:comment>&quot;à ne pas confondre avec MIME type&quot;@fr, &quot;not to be confused with MIME type&quot;@en</rdfs:comment>
     </owl:Class>
     
 
@@ -568,14 +598,29 @@
     <!-- http://purl.org/dc/dcmitype/Text -->
 
     <owl:Class rdf:about="http://purl.org/dc/dcmitype/Text">
-        <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#ContentType"/>
+        <rdfs:comment>&quot;à ne pas confondre avec MIME type&quot;@fr, &quot;not to be confused with MIME type&quot;@en</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/dc/terms/FileFormat -->
 
-    <owl:Class rdf:about="http://purl.org/dc/terms/FileFormat"/>
+    <owl:Class rdf:about="http://purl.org/dc/terms/FileFormat">
+        <rdfs:comment xml:lang="en">A digital resource format.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms"/>
+        <rdfs:label xml:lang="en">File Format</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/dc/terms/MediaType -->
+
+    <owl:Class rdf:about="http://purl.org/dc/terms/MediaType">
+        <owl:equivalentClass rdf:resource="https://www.ica.org/standards/RiC/ontology#CarrierType"/>
+        <rdfs:comment xml:lang="en">A file format or physical medium.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms"/>
+        <rdfs:label xml:lang="en">Media Type</rdfs:label>
+    </owl:Class>
     
 
 
@@ -585,15 +630,27 @@
     
 
 
-    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+    <!-- http://www.loc.gov/premis/rdf/v3/File -->
 
-    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.ica.org/standards/RiC/ontology#Instantiation"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.ica.org/standards/RiC/ontology#hasCarrierType"/>
+                        <owl:hasValue rdf:resource="http://vocab.qdmtl.ca/digitalFile"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
     
 
 
-    <!-- http://www.w3.org/2004/02/skos/core#ConceptScheme -->
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
 
-    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept"/>
     
 
 
@@ -660,16 +717,11 @@
             perceived.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
         <rdfs:label xml:lang="en">Content Type</rdfs:label>
-        <skos:changeNote>
-            <rdf:Description/>
-        </skos:changeNote>
         <skos:scopeNote xml:lang="en">Should not be confused with Representation Type or Carrier
             Type of a related Instantiation since the form of communication can be independent of
             the representation or carrier, for example, a map (Content Type: cartographic image) can
             be represented as a sketch (Representation Type: graphic) or as a GIS-coded elements
             (Representation Type: computer).</skos:scopeNote>
-        <rico:RiCCMCorrespondingComponent xml:lang="en">Corresponds to RiC-A10 (Content Type
-            attribute)</rico:RiCCMCorrespondingComponent>
     </owl:Class>
     
 
@@ -726,6 +778,7 @@
             through time and space.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
         <rdfs:label xml:lang="en">Instantiation</rdfs:label>
+        <rico:closeTo xml:lang="en">PREMIS Representation</rico:closeTo>
     </owl:Class>
     
 
@@ -751,8 +804,6 @@
             contributes to the Record&apos;s physical or intellectual completeness.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
         <rdfs:label xml:lang="en">Record Part</rdfs:label>
-        <rico:RiCCMCorrespondingComponent xml:lang="en">Corresponds to RiC-E05 (Record Part
-            entity)</rico:RiCCMCorrespondingComponent>
     </owl:Class>
     
 
@@ -830,30 +881,12 @@
     
 
 
-    <!-- http://ontology.qdmtl.ca/ -->
+    <!-- http://ontology.qdmtl.ca -->
 
-    <owl:NamedIndividual rdf:about="http://ontology.qdmtl.ca/">
+    <owl:NamedIndividual rdf:about="http://ontology.qdmtl.ca">
         <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
         <voaf:reliesOn rdf:resource="https://www.ica.org/standards/RiC/ontology"/>
     </owl:NamedIndividual>
-    
-
-
-    <!-- http://vocab.qdmtl.ca/ContentTypeScheme -->
-
-    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/ContentTypeScheme"/>
-    
-
-
-    <!-- http://vocab.qdmtl.ca/FileFormatScheme -->
-
-    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/FileFormatScheme"/>
-    
-
-
-    <!-- http://vocab.qdmtl.ca/IdentifierTypeScheme -->
-
-    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/IdentifierTypeScheme"/>
     
 
 
@@ -861,7 +894,6 @@
 
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/archivalReferenceCode">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/IdentifierTypeScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
         <skos:altLabel xml:lang="fr">code d’identification systématique</skos:altLabel>
         <skos:altLabel xml:lang="fr">numéro d’entrée</skos:altLabel>
@@ -872,12 +904,24 @@
     
 
 
+    <!-- http://vocab.qdmtl.ca/blackAndWhitePhotoprint -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/blackAndWhitePhotoprint">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:altLabel xml:lang="fr">épreuve photographique en noir et blanc</skos:altLabel>
+        <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300128347"/>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300128349"/>
+        <skos:prefLabel xml:lang="en">black and white print (photograph)</skos:prefLabel>
+        <skos:prefLabel xml:lang="fr">tirage photographique noir et blanc</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://vocab.qdmtl.ca/cartographicImage -->
 
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/cartographicImage">
         <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Image"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
         <skos:definition xml:lang="en">cartographic content recorded on any carrier type or medium</skos:definition>
         <skos:definition xml:lang="fr">contenu de nature cartographique inscrit sur un support documentaire quelconque</skos:definition>
@@ -887,12 +931,27 @@
     
 
 
+    <!-- http://vocab.qdmtl.ca/colourPhotoprint -->
+
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/colourPhotoprint">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <skos:altLabel xml:lang="fr">épreuve photographique en couleur</skos:altLabel>
+        <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300128359"/>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300128361"/>
+        <skos:prefLabel xml:lang="en">colour print (photograph)</skos:prefLabel>
+        <skos:prefLabel xml:lang="fr">tirage photographique en couleur</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://vocab.qdmtl.ca/digitalFile -->
 
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/digitalFile">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#CarrierType"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
+        <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300404202"/>
+        <skos:prefLabel xml:lang="en">digital file</skos:prefLabel>
+        <skos:prefLabel xml:lang="fr">fichier numérique</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -901,7 +960,6 @@
 
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/inventoryNumber">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/IdentifierTypeScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
         <skos:definition xml:lang="en">number that links photographs to a map</skos:definition>
         <skos:definition xml:lang="fr">numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan</skos:definition>
@@ -916,9 +974,11 @@
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/jpeg">
         <rdf:type rdf:resource="http://purl.org/dc/terms/FileFormat"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/FileFormatScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
-        <rdfs:label>image/jpeg</rdfs:label>
+        <skos:altLabel>jpeg</skos:altLabel>
+        <skos:altLabel>jpg</skos:altLabel>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300266224"/>
+        <skos:prefLabel>image/jpeg</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -928,25 +988,28 @@
     <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/photographicImage">
         <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Image"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
-        <skos:definition xml:lang="en">cartographic content recorded on any carrier type or medium</skos:definition>
-        <skos:definition xml:lang="fr">contenu de nature photographique inscrit sur un support documentaire quelconque</skos:definition>
+        <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300046300"/>
+        <skos:definition xml:lang="fr">contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque</skos:definition>
+        <skos:definition xml:lang="en">photographic content recorded on any carrier type or medium</skos:definition>
         <skos:prefLabel xml:lang="fr">contenu photographique</skos:prefLabel>
         <skos:prefLabel xml:lang="en">photographic content</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">not to be confused with MIME type</skos:scopeNote>
-        <skos:scopeNote xml:lang="fr">à ne pas confondre avec MIME type</skos:scopeNote>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://vocab.qdmtl.ca/printedText -->
+    <!-- http://vocab.qdmtl.ca/text -->
 
-    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/printedText">
+    <owl:NamedIndividual rdf:about="http://vocab.qdmtl.ca/text">
         <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Text"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <skos:inScheme rdf:resource="http://vocab.qdmtl.ca/ContentTypeScheme"/>
         <rdfs:isDefinedBy rdf:resource="http://ontology.qdmtl.ca"/>
+        <skos:altLabel xml:lang="en">text</skos:altLabel>
+        <skos:altLabel xml:lang="fr">texte</skos:altLabel>
+        <skos:definition xml:lang="fr">contenu de nature textuelle inscrit sur un support documentaire quelconque</skos:definition>
+        <skos:definition xml:lang="en">textual content recorded on any carrier type or medium</skos:definition>
+        <skos:prefLabel xml:lang="fr">contenu textuel</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">textual content</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -971,81 +1034,6 @@
             within a record series. (From ICA ISAD(G))</skos:definition>
         <skos:prefLabel xml:lang="en">file</skos:prefLabel>
     </owl:NamedIndividual>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM001-4-2_0806-1-1-P</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0001</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>11</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0002</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>11</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0003</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>11</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0004</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>11</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0005</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>13</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0006</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>13</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/archivalReferenceCode"/>
-        <rico:textualValue>VM094-C196-0007</rico:textualValue>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="https://www.ica.org/standards/RiC/ontology#Identifier"/>
-        <rico:hasIdentifierType rdf:resource="http://vocab.qdmtl.ca/inventoryNumber"/>
-        <rico:textualValue>13</rico:textualValue>
-    </rdf:Description>
 </rdf:RDF>
 
 
