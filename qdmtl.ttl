@@ -10,6 +10,7 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vocab: <http://vocab.qdmtl.ca/> .
+@prefix schema: <https://schema.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
@@ -64,6 +65,10 @@ vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 
 
+###  http://schema.org/image
+<http://schema.org/image> rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.w3.org/2002/07/owl#sameAs
 owl:sameAs rdf:type owl:AnnotationProperty .
 
@@ -112,6 +117,10 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.w3.org/2004/02/skos/core#scopeNote
 skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/url
+schema:url rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.ica.org/standards/RiC/ontology#closeTo
