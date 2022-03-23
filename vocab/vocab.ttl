@@ -1,46 +1,59 @@
-vocab:JPEG rdf:type owl:NamedIndividual ,
-		skos:Concept ,
-dct:FileFormat ;
-	rdfs:label "image/jpeg" ;
-	skos:inScheme vocab:FileFormatScheme ;
+vocab:jpeg rdf:type owl:NamedIndividual ,
+		skos:Concept , dcterms:FileFormat ;
+	skos:prefLabel "image/jpeg" ;
+	skos:altLabel "jpeg" , "jpg" ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300266224> ;
 	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
-vocab:CartographicImage rdf:type owl:NamedIndividual ,
-		skos:Concept ;
-	skos:prefLabel "contenu cartographique"@fr, "cartographic content"@en ;
-	skos:definition "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr, "cartographic content recorded on any carrier type or medium"@en ;
-	skos:inScheme vocab:ContentTypeScheme ;
+vocab:cartographicImage rdf:type owl:NamedIndividual ,
+		skos:Concept , dcmitype:Image ;
+	skos:prefLabel "contenu cartographique"@fr , "cartographic content"@en ;
+	skos:definition "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr , "cartographic content recorded on any carrier type or medium"@en ;
 	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
-vocab:PhotographicImage rdf:type owl:NamedIndividual ,
-		skos:Concept ;
-	skos:prefLabel "contenu photographique"@fr, "photographic content"@en ;
-	skos:definition "contenu de nature photographique inscrit sur un support documentaire quelconque"@fr, "cartographic content recorded on any carrier type or medium"@en ;
-	skos:scopeNote "à ne pas confondre avec MIME type"@fr, "not to be confused with MIME type"@en ;
-	skos:inScheme vocab:ContentTypeScheme ;
+vocab:photographicImage rdf:type owl:NamedIndividual ,
+		skos:Concept , dcmitype:Image ;
+	skos:prefLabel "contenu photographique"@fr , "photographic content"@en ;
+	skos:definition "contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque"@fr , "photographic content recorded on any carrier type or medium"@en ;
+	skos:closeMatch <http://vocab.getty.edu/aat/300046300> ;
 	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
-vocab:ArchivalReferenceCode rdf:type owl:NamedIndividual ,
-		skos:Concept ;
-	skos:prefLabel "cote"@fr, "archival reference code"@en ;
-	skos:altLabel "numéro d’entrée"@fr, "code d’identification systématique"@fr ;
-	skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
-	skos:inScheme vocab:IdentifierTypeScheme ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
-
-vocab:InventoryNumber rdf:type owl:NamedIndividual ,
-		skos:Concept ;
-	skos:prefLabel "numéro d’inventaire"@fr, "inventory number"@en ;
-	skos:definition "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr, "number that links photographs to a map"@en ;
-	skos:inScheme vocab:IdentifierTypeScheme ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
-
-vocab:PrintedText rdf:type owl:NamedIndividual ,
-		skos:Concept ;
-	skos:inScheme vocab:ContentTypeScheme ;
+vocab:text rdf:type owl:NamedIndividual ,
+		skos:Concept , dcmitype:Text ;
+	skos:prefLabel "contenu textuel"@fr , "textual content"@en ;
+	skos:altLabel "texte"@fr , "text"@en ;
+	skos:definition "contenu de nature textuelle inscrit sur un support documentaire quelconque"@fr , "textual content recorded on any carrier type or medium"@en ;
 	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
 vocab:digitalFile rdf:type owl:NamedIndividual ,
-		skos:Concept , rico:CarrierType ;
+		skos:Concept ;
+	skos:prefLabel "fichier numérique"@fr , "digital file"@en ;
+	skos:closeMatch <http://vocab.getty.edu/aat/300404202> ;
 	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
 
+vocab:blackAndWhitePhotoprint rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "tirage photographique noir et blanc"@fr , "black and white print (photograph)"@en ;
+	skos:altLabel "épreuve photographique en noir et blanc"@fr ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300128349> ;
+	skos:closeMatch <http://vocab.getty.edu/aat/300128347> .
+
+vocab:colourPhotoprint rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "tirage photographique en couleur"@fr , "colour print (photograph)"@en ;
+	skos:altLabel "épreuve photographique en couleur"@fr ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300128361> ;
+	skos:closeMatch <http://vocab.getty.edu/aat/300128359> .
+
+vocab:archivalReferenceCode rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "cote"@fr , "archival reference code"@en ;
+	skos:altLabel "numéro d’entrée"@fr, "code d’identification systématique"@fr ;
+	skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+
+vocab:inventoryNumber rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:prefLabel "numéro d’inventaire"@fr , "inventory number"@en ;
+	skos:definition "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr , "number that links photographs to a map"@en ;
+	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
