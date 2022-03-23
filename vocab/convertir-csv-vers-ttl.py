@@ -4,6 +4,7 @@ import csv, re
 # tcID = '001' # Test case ID
 blankNodes = [] # Blank nodes (index du champ)
 #folder = 'tc-' + tcID
+vocabFile = 'vocab.qdmtl.ca.csv'
 
 # Initialisations
 extractedData = []
@@ -11,7 +12,7 @@ propWithBlankNodeValue = {}
 propWithBlankNode = []
 
 # Chargement des données
-with open('vocab.csv', 'r+', newline = '') as csvFile:
+with open(vocabFile, 'r+', newline = '') as csvFile:
     for row in csv.DictReader(csvFile, delimiter = ','):
         extractedData.append(dict(row))
 
