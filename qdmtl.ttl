@@ -20,10 +20,9 @@
                             dcterms:contributor "Dominic Forest" ,
                                                 "Yannic Rozon" ;
                             dcterms:creator "David Valentine" ;
-                            dcterms:description """An ontology for former neighborhoods of Montreal.
-`qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."""@en ;
+                            dcterms:description "An ontology for former neighborhoods of Montreal. `qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."@en ;
                             dcterms:license <https://creativecommons.org/licenses/by/1.0/> ;
-                            dcterms:modified "2022-03-20T09:00:00-0400"^^xsd:dateTime ;
+                            dcterms:modified "2022-03-20T20:00:00-05:00"^^xsd:dateTime ;
                             dcterms:title "Les quartiers disparus de Montréal - Ontologie"@fr ,
                                           "The former neighborhoods of Montreal Ontology"@en ;
                             vann:preferredNamespacePrefix "qdmtl" ;
@@ -79,8 +78,16 @@ skos:altLabel rdf:type owl:AnnotationProperty ;
 skos:changeNote rdf:type owl:AnnotationProperty .
 
 
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.w3.org/2004/02/skos/core#definition
 skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#example
@@ -107,8 +114,8 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 skos:scopeNote rdf:type owl:AnnotationProperty .
 
 
-###  https://www.ica.org/standards/RiC/ontology#RiCCMCorrespondingComponent
-rico:RiCCMCorrespondingComponent rdf:type owl:AnnotationProperty .
+###  https://www.ica.org/standards/RiC/ontology#closeTo
+rico:closeTo rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -116,7 +123,11 @@ rico:RiCCMCorrespondingComponent rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/dc/terms/format
-dcterms:format rdf:type owl:ObjectProperty .
+dcterms:format rdf:type owl:ObjectProperty ;
+               dcterms:description "Recommended practice is to use a controlled vocabulary where available. For example, for file formats one could use the list of Internet Media Types [[MIME](https://www.iana.org/assignments/media-types/media-types.xhtml)].  Examples of dimensions include size and duration."@en ;
+               rdfs:comment "The file format, physical medium, or dimensions of the resource."@en ;
+               rdfs:label "format"@en ,
+                          "format"@fr .
 
 
 ###  http://purl.org/vocommons/voaf#reliesOn
@@ -402,28 +413,47 @@ rico:title rdf:type owl:DatatypeProperty ;
 
 ###  http://purl.org/dc/dcmitype/Image
 dcmitype:Image rdf:type owl:Class ;
-               rdfs:subClassOf rico:ContentType .
+               rdfs:comment "\"à ne pas confondre avec MIME type\"@fr, \"not to be confused with MIME type\"@en" .
 
 
 ###  http://purl.org/dc/dcmitype/Text
 dcmitype:Text rdf:type owl:Class ;
-              rdfs:subClassOf rico:ContentType .
+              rdfs:comment "\"à ne pas confondre avec MIME type\"@fr, \"not to be confused with MIME type\"@en" .
 
 
 ###  http://purl.org/dc/terms/FileFormat
-dcterms:FileFormat rdf:type owl:Class .
+dcterms:FileFormat rdf:type owl:Class ;
+                   rdfs:comment "A digital resource format."@en ;
+                   rdfs:isDefinedBy <http://purl.org/dc/terms> ;
+                   rdfs:label "File Format"@en .
+
+
+###  http://purl.org/dc/terms/MediaType
+dcterms:MediaType rdf:type owl:Class ;
+                  owl:equivalentClass rico:CarrierType ;
+                  rdfs:comment "A file format or physical medium."@en ;
+                  rdfs:isDefinedBy <http://purl.org/dc/terms> ;
+                  rdfs:label "Media Type"@en .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
 voaf:Vocabulary rdf:type owl:Class .
 
 
+###  http://www.loc.gov/premis/rdf/v3/File
+<http://www.loc.gov/premis/rdf/v3/File> rdf:type owl:Class ;
+                                        owl:equivalentClass [ owl:intersectionOf ( rico:Instantiation
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty rico:hasCarrierType ;
+                                                                                     owl:hasValue vocab:digitalFile
+                                                                                   ]
+                                                                                 ) ;
+                                                              rdf:type owl:Class
+                                                            ] .
+
+
 ###  http://www.w3.org/2004/02/skos/core#Concept
 skos:Concept rdf:type owl:Class .
-
-
-###  http://www.w3.org/2004/02/skos/core#ConceptScheme
-skos:ConceptScheme rdf:type owl:Class .
 
 
 ###  https://www.ica.org/standards/RiC/ontology#Appellation
@@ -475,14 +505,11 @@ rico:ContentType rdf:type owl:Class ;
             perceived."""@en ;
                  rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
                  rdfs:label "Content Type"@en ;
-                 skos:changeNote [ ] ;
-skos:scopeNote """Should not be confused with Representation Type or Carrier
+                 skos:scopeNote """Should not be confused with Representation Type or Carrier
             Type of a related Instantiation since the form of communication can be independent of
             the representation or carrier, for example, a map (Content Type: cartographic image) can
             be represented as a sketch (Representation Type: graphic) or as a GIS-coded elements
-            (Representation Type: computer)."""@en ;
-rico:RiCCMCorrespondingComponent """Corresponds to RiC-A10 (Content Type
-            attribute)"""@en .
+            (Representation Type: computer)."""@en .
 
 
 ###  https://www.ica.org/standards/RiC/ontology#Identifier
@@ -523,7 +550,8 @@ rico:Instantiation rdf:type owl:Class ;
             carrier in any persistent, recoverable form as a means of communicating information
             through time and space."""@en ;
                    rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
-                   rdfs:label "Instantiation"@en .
+                   rdfs:label "Instantiation"@en ;
+                   rico:closeTo "PREMIS Representation"@en .
 
 
 ###  https://www.ica.org/standards/RiC/ontology#Record
@@ -542,9 +570,7 @@ rico:RecordPart rdf:type owl:Class ;
                 rdfs:comment """Part of a Record with discrete information content that
             contributes to the Record's physical or intellectual completeness."""@en ;
                 rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
-                rdfs:label "Record Part"@en ;
-                rico:RiCCMCorrespondingComponent """Corresponds to RiC-E05 (Record Part
-            entity)"""@en .
+                rdfs:label "Record Part"@en .
 
 
 ###  https://www.ica.org/standards/RiC/ontology#RecordResource
@@ -597,28 +623,15 @@ rico:Type rdf:type owl:Class ;
 #    Individuals
 #################################################################
 
-###  http://ontology.qdmtl.ca/
-: rdf:type owl:NamedIndividual ,
-           voaf:Vocabulary ;
-  voaf:reliesOn <https://www.ica.org/standards/RiC/ontology> .
-
-
-###  http://vocab.qdmtl.ca/ContentTypeScheme
-vocab:ContentTypeScheme rdf:type owl:NamedIndividual .
-
-
-###  http://vocab.qdmtl.ca/FileFormatScheme
-vocab:FileFormatScheme rdf:type owl:NamedIndividual .
-
-
-###  http://vocab.qdmtl.ca/IdentifierTypeScheme
-vocab:IdentifierTypeScheme rdf:type owl:NamedIndividual .
+###  http://ontology.qdmtl.ca
+<http://ontology.qdmtl.ca> rdf:type owl:NamedIndividual ,
+                                    voaf:Vocabulary ;
+                           voaf:reliesOn <https://www.ica.org/standards/RiC/ontology> .
 
 
 ###  http://vocab.qdmtl.ca/archivalReferenceCode
 vocab:archivalReferenceCode rdf:type owl:NamedIndividual ,
                                      skos:Concept ;
-                            skos:inScheme vocab:IdentifierTypeScheme ;
                             rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
                             skos:altLabel "code d’identification systématique"@fr ,
                                           "numéro d’entrée"@fr ;
@@ -627,11 +640,20 @@ vocab:archivalReferenceCode rdf:type owl:NamedIndividual ,
                                            "cote"@fr .
 
 
+###  http://vocab.qdmtl.ca/blackAndWhitePhotoprint
+vocab:blackAndWhitePhotoprint rdf:type owl:NamedIndividual ,
+                                       skos:Concept ;
+                              skos:altLabel "épreuve photographique en noir et blanc"@fr ;
+                              skos:closeMatch <http://vocab.getty.edu/aat/300128347> ;
+                              skos:exactMatch <http://vocab.getty.edu/aat/300128349> ;
+                              skos:prefLabel "black and white print (photograph)"@en ,
+                                             "tirage photographique noir et blanc"@fr .
+
+
 ###  http://vocab.qdmtl.ca/cartographicImage
 vocab:cartographicImage rdf:type owl:NamedIndividual ,
                                  dcmitype:Image ,
                                  skos:Concept ;
-                        skos:inScheme vocab:ContentTypeScheme ;
                         rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
                         skos:definition "cartographic content recorded on any carrier type or medium"@en ,
                                         "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr ;
@@ -639,17 +661,28 @@ vocab:cartographicImage rdf:type owl:NamedIndividual ,
                                        "contenu cartographique"@fr .
 
 
+###  http://vocab.qdmtl.ca/colourPhotoprint
+vocab:colourPhotoprint rdf:type owl:NamedIndividual ,
+                                skos:Concept ;
+                       skos:altLabel "épreuve photographique en couleur"@fr ;
+                       skos:closeMatch <http://vocab.getty.edu/aat/300128359> ;
+                       skos:exactMatch <http://vocab.getty.edu/aat/300128361> ;
+                       skos:prefLabel "colour print (photograph)"@en ,
+                                      "tirage photographique en couleur"@fr .
+
+
 ###  http://vocab.qdmtl.ca/digitalFile
 vocab:digitalFile rdf:type owl:NamedIndividual ,
-                           skos:Concept ,
-                           rico:CarrierType ;
-                  rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+                           skos:Concept ;
+                  rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
+                  skos:closeMatch <http://vocab.getty.edu/aat/300404202> ;
+                  skos:prefLabel "digital file"@en ,
+                                 "fichier numérique"@fr .
 
 
 ###  http://vocab.qdmtl.ca/inventoryNumber
 vocab:inventoryNumber rdf:type owl:NamedIndividual ,
                                skos:Concept ;
-                      skos:inScheme vocab:IdentifierTypeScheme ;
                       rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
                       skos:definition "number that links photographs to a map"@en ,
                                       "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr ;
@@ -661,31 +694,36 @@ vocab:inventoryNumber rdf:type owl:NamedIndividual ,
 vocab:jpeg rdf:type owl:NamedIndividual ,
                     dcterms:FileFormat ,
                     skos:Concept ;
-           skos:inScheme vocab:FileFormatScheme ;
            rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
-           rdfs:label "image/jpeg" .
+           skos:altLabel "jpeg" ,
+                         "jpg" ;
+           skos:exactMatch <http://vocab.getty.edu/aat/300266224> ;
+           skos:prefLabel "image/jpeg" .
 
 
 ###  http://vocab.qdmtl.ca/photographicImage
 vocab:photographicImage rdf:type owl:NamedIndividual ,
                                  dcmitype:Image ,
                                  skos:Concept ;
-                        skos:inScheme vocab:ContentTypeScheme ;
                         rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
-                        skos:definition "cartographic content recorded on any carrier type or medium"@en ,
-                                        "contenu de nature photographique inscrit sur un support documentaire quelconque"@fr ;
+                        skos:closeMatch <http://vocab.getty.edu/aat/300046300> ;
+                        skos:definition "contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque"@fr ,
+                                        "photographic content recorded on any carrier type or medium"@en ;
                         skos:prefLabel "contenu photographique"@fr ,
-                                       "photographic content"@en ;
-                        skos:scopeNote "not to be confused with MIME type"@en ,
-                                       "à ne pas confondre avec MIME type"@fr .
+                                       "photographic content"@en .
 
 
-###  http://vocab.qdmtl.ca/printedText
-vocab:printedText rdf:type owl:NamedIndividual ,
-                           dcmitype:Text ,
-                           skos:Concept ;
-                  skos:inScheme vocab:ContentTypeScheme ;
-                  rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+###  http://vocab.qdmtl.ca/text
+vocab:text rdf:type owl:NamedIndividual ,
+                    dcmitype:Text ,
+                    skos:Concept ;
+           rdfs:isDefinedBy <http://ontology.qdmtl.ca> ;
+           skos:altLabel "text"@en ,
+                         "texte"@fr ;
+           skos:definition "contenu de nature textuelle inscrit sur un support documentaire quelconque"@fr ,
+                           "textual content recorded on any carrier type or medium"@en ;
+           skos:prefLabel "contenu textuel"@fr ,
+                          "textual content"@en .
 
 
 ###  https://www.ica.org/standards/RiC/ontology
@@ -704,80 +742,5 @@ ric-rst:File rdf:type owl:NamedIndividual ,
             within a record series. (From ICA ISAD(G))"""@en ;
              skos:prefLabel "file"@en .
 
-
-[ rdf:type rico:Identifier ;
-  rico:hasIdentifierType vocab:archivalReferenceCode ;
-  rico:textualValue "VM001-4-2_0806-1-1-P"
-] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0001"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "11"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0002"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "11"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0003"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "11"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0004"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "11"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0005"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "13"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0006"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "13"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:archivalReferenceCode ;
-   rico:textualValue "VM094-C196-0007"
- ] .
-
-[ rdf:type rico:Identifier ;
-   rico:hasIdentifierType vocab:inventoryNumber ;
-   rico:textualValue "13"
- ] .
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
