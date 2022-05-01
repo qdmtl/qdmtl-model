@@ -649,7 +649,7 @@ This class comprises discrete, identifiable human-made items that are documented
 ecrm:E77_Persistent_Item rdf:type owl:Class ;
                          rdfs:subClassOf ecrm:E1_CRM_Entity ;
                          rdfs:comment """This class comprises items that have persistent characteristics of structural nature substantially related to their identity and their integrity, sometimes known as “endurants” in philosophy. Persistent Items may be physical entities, such as people, animals or things, conceptual entities such as ideas, concepts, products of the imagination or even names."""@en ;
-                         rdfs:label "E77 Persistent Item"@en ;
+                         rdfs:label "E77 Persistent Item"@en .
 
 ###  http://erlangen-crm.org/current/E90_Symbolic_Object
 ecrm:E90_Symbolic_Object rdf:type owl:Class ;
