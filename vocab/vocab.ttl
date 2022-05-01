@@ -1,59 +1,92 @@
 vocab:jpeg rdf:type owl:NamedIndividual ,
 		skos:Concept , dcterms:FileFormat ;
-	skos:prefLabel "image/jpeg" ;
-	skos:altLabel "jpeg" , "jpg" ;
 	skos:exactMatch <http://vocab.getty.edu/aat/300266224> ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:prefLabel "image/jpeg" ;
+	skos:altLabel "jpeg" , "jpg" .
 
 vocab:cartographicImage rdf:type owl:NamedIndividual ,
-		skos:Concept , dcmitype:Image ;
+		skos:Concept ;
 	skos:prefLabel "contenu cartographique"@fr , "cartographic content"@en ;
-	skos:definition "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr , "cartographic content recorded on any carrier type or medium"@en ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:definition "contenu de nature cartographique inscrit sur un support documentaire quelconque"@fr , "cartographic content recorded on any carrier type or medium"@en .
 
 vocab:photographicImage rdf:type owl:NamedIndividual ,
-		skos:Concept , dcmitype:Image ;
-	skos:prefLabel "contenu photographique"@fr , "photographic content"@en ;
-	skos:definition "contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque"@fr , "photographic content recorded on any carrier type or medium"@en ;
+		skos:Concept ;
 	skos:closeMatch <http://vocab.getty.edu/aat/300046300> ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
-
-vocab:text rdf:type owl:NamedIndividual ,
-		skos:Concept , dcmitype:Text ;
-	skos:prefLabel "contenu textuel"@fr , "textual content"@en ;
-	skos:altLabel "texte"@fr , "text"@en ;
-	skos:definition "contenu de nature textuelle inscrit sur un support documentaire quelconque"@fr , "textual content recorded on any carrier type or medium"@en ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:prefLabel "contenu photographique"@fr , "photographic content"@en ;
+	skos:definition "contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque"@fr , "photographic content recorded on any carrier type or medium"@en .
 
 vocab:digitalFile rdf:type owl:NamedIndividual ,
 		skos:Concept ;
-	skos:prefLabel "fichier numérique"@fr , "digital file"@en ;
 	skos:closeMatch <http://vocab.getty.edu/aat/300404202> ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:prefLabel "fichier numérique"@fr , "digital file"@en .
 
 vocab:blackAndWhitePhotoprint rdf:type owl:NamedIndividual ,
 		skos:Concept ;
-	skos:prefLabel "tirage photographique noir et blanc"@fr , "black and white print (photograph)"@en ;
-	skos:altLabel "épreuve photographique en noir et blanc"@fr ;
 	skos:exactMatch <http://vocab.getty.edu/aat/300128349> ;
-	skos:closeMatch <http://vocab.getty.edu/aat/300128347> .
+	skos:closeMatch <http://vocab.getty.edu/aat/300128347> ;
+	skos:prefLabel "tirage photographique noir et blanc"@fr , "black and white print (photograph)"@en ;
+	skos:altLabel "épreuve photographique en noir et blanc"@fr .
 
 vocab:colourPhotoprint rdf:type owl:NamedIndividual ,
 		skos:Concept ;
-	skos:prefLabel "tirage photographique en couleur"@fr , "colour print (photograph)"@en ;
-	skos:altLabel "épreuve photographique en couleur"@fr ;
 	skos:exactMatch <http://vocab.getty.edu/aat/300128361> ;
-	skos:closeMatch <http://vocab.getty.edu/aat/300128359> .
+	skos:closeMatch <http://vocab.getty.edu/aat/300128359> ;
+	skos:prefLabel "tirage photographique en couleur"@fr , "colour print (photograph)"@en ;
+	skos:altLabel "épreuve photographique en couleur"@fr .
 
 vocab:archivalReferenceCode rdf:type owl:NamedIndividual ,
 		skos:Concept ;
 	skos:prefLabel "cote"@fr , "archival reference code"@en ;
 	skos:altLabel "numéro d’entrée"@fr, "code d’identification systématique"@fr ;
-	skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:definition "code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal"@fr .
 
 vocab:inventoryNumber rdf:type owl:NamedIndividual ,
 		skos:Concept ;
 	skos:prefLabel "numéro d’inventaire"@fr , "inventory number"@en ;
-	skos:definition "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr , "number that links photographs to a map"@en ;
-	rdfs:isDefinedBy <http://ontology.qdmtl.ca> .
+	skos:definition "numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan"@fr , "number that links photographs to a map"@en .
+
+vocab:advertising rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300054347> ;
+	skos:prefLabel "publicité"@fr , "advertising"@en ;
+	skos:altLabel "réclame"@fr .
+
+vocab:housing rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300000283> ;
+	skos:prefLabel "habitation"@fr , "housing"@en .
+
+vocab:trade rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300061886> ;
+	skos:closeMatch <http://www.wikidata.org/entity/Q601401> ;
+	skos:prefLabel "commerce"@fr, "trading"@en ;
+	skos:altLabel "trade"@en , "business"@en .
+
+vocab:educating rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300191862> ;
+	skos:prefLabel "éducation"@fr , "educating"@en .
+
+vocab:religion rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300132464> ;
+	skos:prefLabel "religion"@fr , "religious functions"@en .
+
+vocab:government rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300075671> ;
+	skos:prefLabel "gouvernement"@fr , "government"@en ;
+	skos:altLabel "administration publique"@fr , "public administration"@en .
+
+vocab:healthCare rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300404582> ;
+	skos:prefLabel "soins de santé"@fr , "health care"@en .
+
+vocab:manufacturing rdf:type owl:NamedIndividual ,
+		skos:Concept ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300077527> ;
+	skos:prefLabel "industrie"@fr , "manufacturing"@en ;
+	skos:altLabel "manufacture"@fr , "production de biens"@fr .
+

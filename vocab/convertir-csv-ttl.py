@@ -1,7 +1,7 @@
 # script boboche
 import csv, re
 
-vocabFile = 'vocab.qdmtl.ca.csv'
+vocabFile = 'vocab.csv'
 
 # Initialisations
 extractedData = []
