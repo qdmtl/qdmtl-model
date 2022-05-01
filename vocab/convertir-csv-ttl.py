@@ -1,4 +1,4 @@
-# script boboche
+# conversion des termes de vocabulaire
 import csv, re
 
 vocabFile = 'vocab.csv'
