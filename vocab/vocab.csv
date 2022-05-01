@@ -1,0 +1,17 @@
+URI,rdf:type,skos:exactMatch,skos:closeMatch,skos:prefLabel,skos:altLabel,skos:definition
+vocab:jpeg,"skos:Concept , dcterms:FileFormat",<http://vocab.getty.edu/aat/300266224>,,"""image/jpeg""","""jpeg"" , ""jpg""",
+vocab:cartographicImage,skos:Concept,,,"""contenu cartographique""@fr , ""cartographic content""@en",,"""contenu de nature cartographique inscrit sur un support documentaire quelconque""@fr , ""cartographic content recorded on any carrier type or medium""@en"
+vocab:photographicImage,skos:Concept,,<http://vocab.getty.edu/aat/300046300>,"""contenu photographique""@fr , ""photographic content""@en",,"""contenu visuel ayant pour origine un procédé photographique, inscrit sur un support documentaire quelconque""@fr , ""photographic content recorded on any carrier type or medium""@en"
+vocab:digitalFile,skos:Concept,,<http://vocab.getty.edu/aat/300404202>,"""fichier numérique""@fr , ""digital file""@en",,
+vocab:blackAndWhitePhotoprint,skos:Concept,<http://vocab.getty.edu/aat/300128349>,<http://vocab.getty.edu/aat/300128347>,"""tirage photographique noir et blanc""@fr , ""black and white print (photograph)""@en","""épreuve photographique en noir et blanc""@fr",
+vocab:colourPhotoprint,skos:Concept,<http://vocab.getty.edu/aat/300128361>,<http://vocab.getty.edu/aat/300128359>,"""tirage photographique en couleur""@fr , ""colour print (photograph)""@en","""épreuve photographique en couleur""@fr",
+vocab:archivalReferenceCode,skos:Concept,,,"""cote""@fr , ""archival reference code""@en","""numéro d’entrée""@fr, ""code d’identification systématique""@fr","""code d’identification systématique attribué à une pièce d’archives par le service des archives de Montréal""@fr"
+vocab:inventoryNumber,skos:Concept,,,"""numéro d’inventaire""@fr , ""inventory number""@en",,"""numéro permettant d’associer un plan avec un ensemble de photographies et de repérer les photographies sur le plan""@fr , ""number that links photographs to a map""@en"
+vocab:advertising,skos:Concept,<http://vocab.getty.edu/aat/300054347>,,"""publicité""@fr , ""advertising""@en","""réclame""@fr",
+vocab:housing,skos:Concept,<http://vocab.getty.edu/aat/300000283>,,"""habitation""@fr , ""housing""@en",,
+vocab:trade,skos:Concept,<http://vocab.getty.edu/aat/300061886>,<http://www.wikidata.org/entity/Q601401>,"""commerce""@fr, ""trading""@en","""trade""@en , ""business""@en",
+vocab:educating,skos:Concept,<http://vocab.getty.edu/aat/300191862>,,"""éducation""@fr , ""educating""@en",,
+vocab:religion,skos:Concept,<http://vocab.getty.edu/aat/300132464>,,"""religion""@fr , ""religious functions""@en",,
+vocab:government,skos:Concept,<http://vocab.getty.edu/aat/300075671>,,"""gouvernement""@fr , ""government""@en","""administration publique""@fr , ""public administration""@en",
+vocab:healthCare,skos:Concept,<http://vocab.getty.edu/aat/300404582>,,"""soins de santé""@fr , ""health care""@en",,
+vocab:manufacturing,skos:Concept,<http://vocab.getty.edu/aat/300077527>,,"""industrie""@fr , ""manufacturing""@en","""manufacture""@fr , ""production de biens""@fr",
