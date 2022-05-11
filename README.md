@@ -1,28 +1,16 @@
-# qdmtl-ontology
+# qdmtl-onto
 
-Ce dépôt contient les sources de l’ontologie développée dans le cadre du [projet `QDMTL`](https://qdmtl.ca). Ce projet soutient la préparation et la publication d’un jeu de données ouvertes et liées (LOD) sur les quartiers disparus de Montréal. L'objectif du projet consiste à produire une démonstration de faisabilité comprenant les outils d'exploration suivants :
-
-- un point d'accès SPARQL;
-- des URI déréférençables menant à des fiches d'informations;
-- différentes sérialisations du jeu de données;
-- une documentation.
-
-L’échantillon de données produit dans le cadre de cette démonstration est principalement lié au secteur du Faubourg à m’lasse, dont une large superficie fut détruite en 1963 pour faire place à la construction de la maison de Radio-Canada. Dans une moindre mesure, certaines informations concernant d’autres éléments de patrimoine disparu seront rendues disponibles afin d’esquisser le contexte plus large d’un quartier disparu à Montréal.
+Ce dépôt contient les sources de l’ontologie développée dans le cadre du [projet `QDMTL`](https://qdmtl.ca). Ce projet soutient la préparation et la publication d’un jeu de données ouvertes et liées (LOD) sur les quartiers disparus de Montréal.
 
 ## Version courante du graphe
 
-La dernière version du graphe basé sur le modèle en cours de développement est disponible par le point d’accès SPARQL suivant :
+La dernière version du graphe basé sur le modèle en cours de développement est disponible par le point d’accès SPARQL du projet :
 
 - [http://qdmtl.ca/sparql](http://qdmtl.ca/sparql)
 
-> :warning: **NOTE** :warning:
+> :warning: **NOTE**
 >
-> Il s'agit d'une prépublication : la structure et le contenu du jeu de données pourraient être substantiellement modifiés dans les prochaines semaines.
-
-
-## Méthodologie de développement
-
-Approche méthodologique principale : *Simple Agile Methodology for Ontology Development* (SAMOD), méthodologie décrite par Peroni : https://essepuntato.it/samod/.
+> Il s’agit d’une prépublication : la structure et le contenu du jeu de données pourraient être substantiellement modifiés à court terme.
 
 ## Branches de ce dépôt
 
@@ -44,7 +32,5 @@ Les documents et les données liés aux cas de test sont disponibles dans ce dé
 
 ## Ressources
 
-- Informations sur le projet `QDMTL` : [https://qdmtl.ca](https://qdmtl.ca)
-- Documentation : [https://qdmtl.ca/doc](https://qdmtl.ca/doc)
-- Visualisation du modèle : [https://qdmtl.ca/modele](https://qdmtl.ca/modele)
-- SPARQL Endpoint : [http://data.qdmtl.ca/sparql]
+- Informations sur le projet `QDMTL` : [http://qdmtl.ca](http://qdmtl.ca)
+- SPARQL Endpoint : [http://data.qdmtl.ca/sparql](http://data.qdmtl.ca/sparql)
