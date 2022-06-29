@@ -1,3 +1,4 @@
+@prefix : <http://onto.qdmtl.ca/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -15,7 +16,6 @@
 @prefix schema: <https://schema.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @base <http://onto.qdmtl.ca> .
 
 <http://onto.qdmtl.ca> rdf:type owl:Ontology ;
@@ -25,7 +25,7 @@
                         dcterms:creator "David Valentine" ;
                         dcterms:description "An ontology for former neighborhoods of Montreal. `qdmtl` in the URI stands for french \"quartiers disparus de Montréal\"."@en ;
                         dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-                        dcterms:modified "2022-05-02T09:00:00-05:00"^^xsd:dateTime ;
+                        dcterms:modified "2022-06-25T13:40:00-05:00"^^xsd:dateTimeStamp ;
                         dcterms:title "Les quartiers disparus de Montréal - Ontologie"@fr ,
                                       "The former neighborhoods of Montreal Ontology"@en ;
                         vann:preferredNamespacePrefix "qdmtl" ;
@@ -602,8 +602,9 @@ This class comprises non-material products of our minds and other human produced
 ###  http://erlangen-crm.org/current/E41_Appellation
 ecrm:E41_Appellation rdf:type owl:Class ;
                      rdfs:subClassOf ecrm:E90_Symbolic_Object ;
-                     rdfs:comment """Scope note:
-This class comprises signs, either meaningful or not, or arrangements of signs following a specific syntax, that are used or can be used to refer to and identify a specific instance of some class or category within a certain context."""@en ;
+                     rdfs:comment """This class comprises signs, either meaningful or not, or arrangements of signs following a specific syntax, that are used or can be used to refer to and identify a specific instance of some class or category within a certain context.
+
+See also has alternative form property: http://cidoc-crm.org/cidoc-crm/7.1.1/P139_has_alternative_form"""@en ;
                      rdfs:label "E41 Appellation"@en ;
                      rdfs:seeAlso <http://cidoc-crm.org/cidoc-crm/7.1.1/E41_Appellation> .
 
@@ -648,8 +649,9 @@ This class comprises discrete, identifiable human-made items that are documented
 ###  http://erlangen-crm.org/current/E77_Persistent_Item
 ecrm:E77_Persistent_Item rdf:type owl:Class ;
                          rdfs:subClassOf ecrm:E1_CRM_Entity ;
-                         rdfs:comment """This class comprises items that have persistent characteristics of structural nature substantially related to their identity and their integrity, sometimes known as “endurants” in philosophy. Persistent Items may be physical entities, such as people, animals or things, conceptual entities such as ideas, concepts, products of the imagination or even names."""@en ;
+                         rdfs:comment "This class comprises items that have persistent characteristics of structural nature substantially related to their identity and their integrity, sometimes known as “endurants” in philosophy. Persistent Items may be physical entities, such as people, animals or things, conceptual entities such as ideas, concepts, products of the imagination or even names."@en ;
                          rdfs:label "E77 Persistent Item"@en .
+
 
 ###  http://erlangen-crm.org/current/E90_Symbolic_Object
 ecrm:E90_Symbolic_Object rdf:type owl:Class ;
@@ -660,138 +662,124 @@ This class comprises identifiable symbols and any aggregation of symbols, such a
                          rdfs:seeAlso <http://cidoc-crm.org/cidoc-crm/7.1.1/E90_Symbolic_Object> .
 
 
-###  http://onto.qdmtl.ca/BuildingUsageType
-qdmtl:BuildingUsageType rdf:type owl:Class ;
-                        owl:equivalentClass [ owl:intersectionOf ( skos:Concept
-                                                                   [ rdf:type owl:Restriction ;
-                                                                     owl:onProperty ecrm:P101i_was_use_of ;
-                                                                     owl:allValuesFrom qdmtl:E24_Building
-                                                                   ]
-                                                                 ) ;
-                                              rdf:type owl:Class
-                                            ] ;
-                        rdfs:subClassOf ecrm:E55_Type .
-
-
 ###  http://onto.qdmtl.ca/E24_Building
 qdmtl:E24_Building rdf:type owl:Class ;
                    rdfs:subClassOf ecrm:E24_Physical_Human-Made_Thing ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty ecrm:P101_had_as_general_use ;
-                                     owl:someValuesFrom qdmtl:BuildingUsageType
+                                     owl:someValuesFrom qdmtl:E55_Building_Usage_Type
                                    ] ;
                    owl:disjointWith qdmtl:E24_Thoroughfare ;
-                   rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre du projet QDMTL. Elle rassemble les bâtiments détruits des quartiers disparus de Montréal."@fr ;
+                   rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL. Elle rassemble les bâtiments détruits des quartiers disparus de Montréal."@fr ;
                    skos:altLabel "Immeuble"@fr ;
                    skos:prefLabel "Building"@en ,
                                   "Bâtiment"@fr .
 
 
-###  http://onto.qdmtl.ca/E24_CommercialBuilding
-qdmtl:E24_CommercialBuilding rdf:type owl:Class ;
-                             owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
-                                                                        [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty ecrm:P101_had_as_general_use ;
-                                                                          owl:hasValue vocab:trade
-                                                                        ]
-                                                                      ) ;
-                                                   rdf:type owl:Class
-                                                 ] ;
-                             rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre de la représentation des quartiers disparus de Montréal du projet QDMTL."@fr ;
-                             rdfs:label "Immeuble commercial"@fr .
-
-
-###  http://onto.qdmtl.ca/E24_IndustrialBuilding
-qdmtl:E24_IndustrialBuilding rdf:type owl:Class ;
-                             owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
-                                                                        [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty ecrm:P101_had_as_general_use ;
-                                                                          owl:hasValue vocab:manufacturing
-                                                                        ]
-                                                                      ) ;
-                                                   rdf:type owl:Class
-                                                 ] ;
-                             rdfs:subClassOf qdmtl:E24_Building ;
-                             owl:disjointWith qdmtl:E24_InstitutionalBuilding ,
-                                              qdmtl:E24_ResidentialBuilding ;
-                             rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre de la représentation des quartiers disparus de Montréal du projet QDMTL."@fr ;
-                             rdfs:label "Immeuble industriel"@fr .
-
-
-###  http://onto.qdmtl.ca/E24_InstitutionalBuilding
-qdmtl:E24_InstitutionalBuilding rdf:type owl:Class ;
-                                owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
-                                                                           [ rdf:type owl:Restriction ;
-                                                                             owl:onProperty ecrm:P101_had_as_general_use ;
-                                                                             owl:someValuesFrom [ rdf:type owl:Class ;
-                                                                                                  owl:oneOf ( vocab:educating
-                                                                                                              vocab:government
-                                                                                                              vocab:healthCare
-                                                                                                              vocab:religion
-                                                                                                            )
-                                                                                                ]
-                                                                           ]
-                                                                         ) ;
-                                                      rdf:type owl:Class
-                                                    ] ;
-                                rdfs:subClassOf qdmtl:E24_Building ;
-                                rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre de la représentation des quartiers disparus de Montréal du projet QDMTL."@fr ;
-                                rdfs:label "Immeuble institutionnel"@fr .
-
-
-###  http://onto.qdmtl.ca/E24_MixedUseBuilding
-qdmtl:E24_MixedUseBuilding rdf:type owl:Class ;
-                           owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
-                                                                      [ rdf:type owl:Restriction ;
-                                                                        owl:onProperty ecrm:P101_had_as_general_use ;
-                                                                        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                                        owl:onClass qdmtl:BuildingUsageType
-                                                                      ]
-                                                                    ) ;
-                                                 rdf:type owl:Class
-                                               ] ;
-                           rdfs:subClassOf qdmtl:E24_Building ;
-                           rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre de la représentation des quartiers disparus de Montréal du projet QDMTL."@fr ;
-                           rdfs:label "Bâtiment à usage mixte"@fr .
-
-
-###  http://onto.qdmtl.ca/E24_ResidentialBuilding
-qdmtl:E24_ResidentialBuilding rdf:type owl:Class ;
+###  http://onto.qdmtl.ca/E24_Commercial_Building
+qdmtl:E24_Commercial_Building rdf:type owl:Class ;
                               owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
                                                                          [ rdf:type owl:Restriction ;
                                                                            owl:onProperty ecrm:P101_had_as_general_use ;
-                                                                           owl:hasValue vocab:housing
+                                                                           owl:hasValue vocab:trade
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ] ;
+                              rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ;
+                              rdfs:label "Immeuble commercial"@fr .
+
+
+###  http://onto.qdmtl.ca/E24_Industrial_Building
+qdmtl:E24_Industrial_Building rdf:type owl:Class ;
+                              owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty ecrm:P101_had_as_general_use ;
+                                                                           owl:hasValue vocab:manufacturing
                                                                          ]
                                                                        ) ;
                                                     rdf:type owl:Class
                                                   ] ;
                               rdfs:subClassOf qdmtl:E24_Building ;
-                              rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC-CRM dans le cadre de la représentation des quartiers disparus de Montréal du projet QDMTL."@fr ;
-                              rdfs:label "Immeuble résidentiel"@fr .
+                              owl:disjointWith qdmtl:E24_Institutional_Building ,
+                                               qdmtl:E24_Residential_Building ;
+                              rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ;
+                              rdfs:label "Immeuble industriel"@fr .
+
+
+###  http://onto.qdmtl.ca/E24_Institutional_Building
+qdmtl:E24_Institutional_Building rdf:type owl:Class ;
+                                 owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty ecrm:P101_had_as_general_use ;
+                                                                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                   owl:oneOf ( vocab:educating
+                                                                                                               vocab:government
+                                                                                                               vocab:healthCare
+                                                                                                               vocab:religion
+                                                                                                             )
+                                                                                                 ]
+                                                                            ]
+                                                                          ) ;
+                                                       rdf:type owl:Class
+                                                     ] ;
+                                 rdfs:subClassOf qdmtl:E24_Building ;
+                                 rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ;
+                                 rdfs:label "Immeuble institutionnel"@fr .
+
+
+###  http://onto.qdmtl.ca/E24_Mixed_Use_Building
+qdmtl:E24_Mixed_Use_Building rdf:type owl:Class ;
+                             owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty ecrm:P101_had_as_general_use ;
+                                                                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass qdmtl:E55_Building_Usage_Type
+                                                                        ]
+                                                                      ) ;
+                                                   rdf:type owl:Class
+                                                 ] ;
+                             rdfs:subClassOf qdmtl:E24_Building ;
+                             rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ;
+                             rdfs:label "Bâtiment à usage mixte"@fr .
+
+
+###  http://onto.qdmtl.ca/E24_Residential_Building
+qdmtl:E24_Residential_Building rdf:type owl:Class ;
+                               owl:equivalentClass [ owl:intersectionOf ( qdmtl:E24_Building
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty ecrm:P101_had_as_general_use ;
+                                                                            owl:hasValue vocab:housing
+                                                                          ]
+                                                                        ) ;
+                                                     rdf:type owl:Class
+                                                   ] ;
+                               rdfs:subClassOf qdmtl:E24_Building ;
+                               rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ;
+                               rdfs:label "Immeuble résidentiel"@fr .
 
 
 ###  http://onto.qdmtl.ca/E24_Thoroughfare
 qdmtl:E24_Thoroughfare rdf:type owl:Class ;
                        rdfs:subClassOf ecrm:E24_Physical_Human-Made_Thing ;
-                       rdfs:comment "Cette classe est un élément de spécialisation du modèle CIDOC CRM dans le cadre de la représentation des quartiers disparus de Montréal."@fr ,
+                       rdfs:comment "Cette classe est un élément de spécialisation du CIDOC-CRM défini dans le cadre du projet QDMTL."@fr ,
                                     "voie de communication en milieu urbain"@fr ;
                        skos:altLabel "rue"@fr ;
                        skos:prefLabel "thoroughfare"@en ,
                                       "voie de communication"@fr .
 
 
-###  http://purl.org/dc/dcmitype/Image
-dcmitype:Image rdf:type owl:Class ;
-               rdfs:comment """\"à ne pas confondre avec MIME type\"@fr, \"not to be confused with MIME type\"@en,
-
-\"interprétation de la prop. description de cette entité : «Examples include images and photographs [...]». Il s'agit ainsi d'une classe dont les instances sont considérées comme étant des images.  Elle est définie comme une classe par dcmitype:\"@fr"""@fr .
-
-
-###  http://purl.org/dc/dcmitype/Text
-dcmitype:Text rdf:type owl:Class ;
-              rdfs:comment """\"à ne pas confondre avec MIME type\"@fr, \"not to be confused with MIME type\"@en
-
-\"Voir interprétation dcmitype:Image\"@fr"""^^rdfs:Literal .
+###  http://onto.qdmtl.ca/E55_Building_Usage_Type
+qdmtl:E55_Building_Usage_Type rdf:type owl:Class ;
+                              owl:equivalentClass [ owl:intersectionOf ( skos:Concept
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty ecrm:P101i_was_use_of ;
+                                                                           owl:allValuesFrom qdmtl:E24_Building
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ] ;
+                              rdfs:subClassOf ecrm:E55_Type .
 
 
 ###  http://purl.org/dc/terms/FileFormat
@@ -852,8 +840,8 @@ rico:CarrierType rdf:type owl:Class ;
 
 ###  https://www.ica.org/standards/RiC/ontology#Concept
 rico:Concept rdf:type owl:Class ;
-             rdfs:comment """An idea, unit of thought, abstract cultural object or
-            category"""@en ;
+             rdfs:subClassOf rico:Thing ;
+             rdfs:comment "An idea, unit of thought, abstract cultural object or category."@en ;
              rdfs:isDefinedBy <https://www.ica.org/standards/RiC/ontology> ;
              rdfs:label "Concept"@en .
 
